@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Exotc350 Bd BT';
+    src: url('Exotic350BT-Bold.eot');
+    src: url('Exotic350BT-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Exotic350BT-Bold.woff2') format('woff2'),
+        url('Exotic350BT-Bold.woff') format('woff'),
+        url('Exotic350BT-Bold.ttf') format('truetype'),
+        url('Exotic350BT-Bold.svg#Exotic350BT-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
