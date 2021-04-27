@@ -6,8 +6,8 @@ import works from "./Allworks";
 import Works from "./Works";
 import Title from "./Title";
 import Filter from "./Filter";
-import About from "./About";
-import Contact from "./Contact";
+// import About from "./About";
+// import Contact from "./Contact";
 
 function App() {
   const [navbarfixed, setNavbarFixed] = useState();
