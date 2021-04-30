@@ -6,8 +6,9 @@ import works from "./Allworks";
 import Works from "./Works";
 import Title from "./Title";
 import Filter from "./Filter";
-// import About from "./About";
-// import Contact from "./Contact";
+import About from "./About";
+import Contact from "./Contact";
+import Footer from "./Footer";
 
 function App() {
   const [navbarfixed, setNavbarFixed] = useState();
@@ -48,17 +49,19 @@ function App() {
           title="about"
           pName="ABOUT"
         />
-        {/* <About /> */}
+        <About />
       </section>
-      {/* <section className="contact" id="contact">
-        <Title
-          divClassName="section-title-div left-section-title"
+      
+      <section className="contact" id="contact">
+      <Title
+          divClassName="contact-section-title-div left-section-title"
           divNameAttr="contact"
           title="contact"
           pName="CONTACT"
         />
         <Contact />
-      </section> */}
+      </section>
+      <Footer/>
     </div>
   );
 }

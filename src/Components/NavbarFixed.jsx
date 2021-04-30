@@ -57,7 +57,7 @@ function NavbarFixed() {
               to="contact"
               spy={true}
               smooth={true}
-              offset={0}
+              offset={-30}
               duration={500}
             >
               <p className="link" href="#contact">

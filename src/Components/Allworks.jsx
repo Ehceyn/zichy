@@ -1,5 +1,5 @@
-import work1 from "../utilities/zichygraphs/andys-mockup-1.png";
-import work2 from "../utilities/zichygraphs/andys-mockup-4.png";
+import work1 from "../utilities/zichygraphs/andysm.png";
+import work2 from "../utilities/zichygraphs/product-flyer-fashion.png";
 import work3 from "../utilities/zichygraphs/andysm5.png";
 import work4 from "../utilities/zichygraphs/3d-glass-window-logo-mockup.png";
 
