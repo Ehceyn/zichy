@@ -1,7 +1,5 @@
 import React from "react";
 import myPhoto from "../../src/utilities/zichygraphs/myphoto.png";
-import handshake from "../../src/utilities/zichygraphs/handshakegray.png";
-import conference from "../../src/utilities/zichygraphs/3d-glass-window-logo-mockup.png";
 
 function About() {
   return (
@@ -13,19 +11,12 @@ function About() {
           officia tempore dolorem dolorum aliquid nam odit placeat voluptatem
           iusto nostrum aliquam totam!
         </p>
+        <img src={myPhoto} alt="myPhoto" className="my-photo-smscrn " />
       </article>
       <div className="about photo-div">
-        <img
-          src={handshake}
-          alt="myPhoto"
-          className="my-photo about-photo-overlay about-photo-overlay1"
-        />
+        <div>
         <img src={myPhoto} alt="myPhoto" className="my-photo " />
-        <img
-          src={conference}
-          alt="myPhoto"
-          className="my-photo about-photo-overlay about-photo-overlay2"
-        />
+        </div>
       </div>
     </div>
   );

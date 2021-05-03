@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 import zichygraphs from "../../src/utilities/zichygraphs/zichygraphs.png";
 import { Favorite } from "@material-ui/icons";
 import Buttons from "./Buttons";

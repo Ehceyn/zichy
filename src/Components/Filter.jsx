@@ -5,16 +5,19 @@ function Filter() {
     <div className="filter">
       <ul className="filter-btn">
         <li>
-          <a href="#logos">logos</a>
+          <a href="#all">All</a>
         </li>
         <li>
-          <a href="#business cards">business cards</a>
+          <a href="#logos">Logos</a>
         </li>
         <li>
-          <a href="#flyers">flyers</a>
+          <a href="#business cards">Business cards</a>
         </li>
         <li>
-          <a href="#posters">posters</a>
+          <a href="#flyers">Flyers</a>
+        </li>
+        <li>
+          <a href="#posters">Posters</a>
         </li>
       </ul>
     </div>

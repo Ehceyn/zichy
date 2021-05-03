@@ -8,7 +8,7 @@ function Works(props) {
   function handleClick() {
     setToggle(!toggle);
   }
-  console.log(toggle);
+  // console.log(toggle);
 
   return (
     <div className="works-div">

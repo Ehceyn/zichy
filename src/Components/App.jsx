@@ -61,7 +61,9 @@ function App() {
         />
         <Contact />
       </section>
+      <section>
       <Footer/>
+      </section>
     </div>
   );
 }

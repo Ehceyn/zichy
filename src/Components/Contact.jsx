@@ -1,21 +1,20 @@
 import React from "react";
-import {
-  withStyles,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { Button } from "@material-ui/core";
+import Button from "./Buttons";
+import { SocialIcon } from "react-social-icons";
+// import Mediaquery from './mediaquery';
 
 const CssTextField = withStyles({
   root: {
-    '& id.Mui-focused':{
-      borderBottomColor: '#a2a1a3',
+    "& id.Mui-focused": {
+      borderBottomColor: "#a2a1a3",
     },
-    '& label.Mui-focused': {
-      color: '#0b993a',
+    "& label.Mui-focused": {
+      color: "#0b993a",
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#0b993a',
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#0b993a",
     },
   },
 })(TextField);
@@ -23,7 +22,7 @@ const CssTextField = withStyles({
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    justifyContent:'space-between',
+    justifyContent: "space-between",
     flexWrap: "wrap",
     margin: theme.spacing(3),
   },
@@ -32,17 +31,9 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     justifySelf: "center",
-    width: "33ch",
-  }
-  // justify:{
-  // }
+    width: "30ch",
+  },
 }));
-
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: green,
-//   },
-// });
 
 
 export default function Contact() {
@@ -53,16 +44,36 @@ export default function Contact() {
       <div className="contact-div">
         <div className="contact-bg-para">
           <p>ZICHYgraphs</p>
+          <article>
+            <SocialIcon
+              url="https://facebook.com/chimeruzee.chidum"
+              bgColor="blue"
+              fgColor="white"
+              className="social-icon"
+            />
+            <SocialIcon
+              url="https://twitter.com/chimeruzee1"
+              bgColor="#00ACEF"
+              fgColor="white"
+              className="social-icon"
+            />
+            <SocialIcon
+              url="https://instagram.com/chimeruzee.chidum"
+              bgColor="red"
+              fgColor="white"
+              className="social-icon"
+            />
+          </article>
         </div>
       </div>
       <div className="contact-page">
-        <form className={classes.root} noValidate autoComplete="off" >
+        <form className={classes.root} noValidate autoComplete="off">
           {/* <ThemeProvider theme={theme}> */}
           <CssTextField
             id="standard-basic"
             label="I will like to get something like this/these"
             fullWidth
-            style={{ margin: 8}}
+            style={{ margin: 8 }}
             // InputProps={{classes}}
           />
           <CssTextField
@@ -96,9 +107,10 @@ export default function Contact() {
             fullWidth
             style={{ margin: 8 }}
           />
-          <Button>Send</Button>
+          <Button
+            className="btn btn-for-general btn-without-bg" value='Send'
+          />
           {/* </ThemeProvider> */}
-          
         </form>
       </div>
     </div>

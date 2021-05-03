@@ -19,6 +19,7 @@
   font-family: Lato, "Segoe UI", sans-serif;
 }
 body {
+  width: 100vw;
   background-color: white;
   overflow-x: hidden;
 }
@@ -48,7 +49,7 @@ Headers color      :      #1dbf73
 .btn {
   /* Specifies the properties of all buttons including header button */
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.2rem;
   border-radius: 3px;
   cursor: pointer;
 }
@@ -62,27 +63,28 @@ Headers color      :      #1dbf73
   /* Specifies the size of the button excluding header button */
   width: 150px;
   height: 40px;
+  /* box-shadow: 0.1px 0.1px 20px rgba(130, 133, 131, 0.233); */
 }
 .btn-with-bg {
   /* For the buttons with background-color 'green' */
   border: none;
-  background-color: #0b993a;
+  background: #0b993a;
   color: white;
 }
 .btn-with-bg:hover {
   /* For the buttons with background-color 'green' onhover */
-  background-color: #0fd952;
+  background: rgba(7, 126, 47, 0.855);
 }
 .btn-without-bg {
   /* For the buttons without background-color 'green' */
-  border: 1px solid #0b993a;
-  border: 1px solid rgba(11, 153, 58, 0.692);
+  border: 2px solid #0b993a;
   background-color: white;
   color: #0b993a;
 }
 .btn-without-bg:hover {
   /* For the buttons without background-color 'green' onhover */
   background-color: #0b993a;
+  color: white;
 }
 img {
   width: 110px;
@@ -104,20 +106,15 @@ img {
   /* For the titles aligned on the left */
   left: -55px;
 }
+.about-section-title {
+  right: -55px;
+}
 /* ================================= HEADER SECTION ================================ */
 
 header {
   width: 100%;
   height: 100vh;
   background: url(./utilities/zichygraphs/neon\ bg.jpg) no-repeat center/cover;
-}
-
-header::after {
-  content: "";
-  width: 100%;
-  height: 100vh;
-  z-index: 1;
-  position: absolute;
 }
 
 header .intro {
@@ -128,13 +125,13 @@ header .intro {
   justify-content: space-between;
   bottom: 70px;
   left: 70px;
-  width: 400px;
+  width: 450px;
   height: 350px;
 }
 
 header .intro p {
   color: white;
-  font-size: 3.2rem;
+  font-size: 3.4rem;
   font-weight: 100;
 }
 
@@ -209,7 +206,7 @@ header .intro p .intro-span {
   width: 100%;
   height: 80px;
   z-index: 5;
-  box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.233);
+  box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.1);
   transition: 0.5s linear;
 }
 
@@ -272,7 +269,7 @@ header .intro p .intro-span {
   align-items: center;
   background: rgba(255, 255, 255, 0.69);
   border-radius: 3px;
-  box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.233);
+  box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.1);
 }
 .filter-btn a {
   display: flex;
@@ -313,7 +310,7 @@ header .intro p .intro-span {
   background-color: #ffffff;
   padding: 10px;
   border-radius: 3px;
-  box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.233);
+  box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.1);
 }
 
 .works-img {
@@ -363,10 +360,6 @@ header .intro p .intro-span {
 }
 
 /* ================================= ABOUT SECTION ================================ */
-.about-section-title {
-  right: -55px;
-}
-
 .about-div {
   padding-top: 170px;
   display: flex;
@@ -374,7 +367,7 @@ header .intro p .intro-span {
   width: 100%;
   max-width: 1500px;
   height: fit-content;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 80vh;
 }
@@ -383,7 +376,7 @@ header .intro p .intro-span {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80%;
+  height: 500px;
   width: 50%;
 }
 .about-div article p {
@@ -392,17 +385,29 @@ header .intro p .intro-span {
   font-weight: 400;
   color: #686e6a;
 }
+.my-photo-smscrn{
+ display: none;
+}
 .about-div .photo-div {
   position: relative;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   width: 50%;
-  height: 80%;
+  height: 500px;
+}
+
+.about-div .photo-div div {
+  background: url(./utilities/zichygraphs/bird.jpg) no-repeat center/cover;
+  width: 88%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px 0 0 10px;
 }
 
 .about-div .photo-div .my-photo {
-  position: absolute;
-  margin-left: 30px;
+  transform: translateX(-85px);
   width: 250px;
   max-width: 250px;
   height: 300px;
@@ -413,54 +418,47 @@ header .intro p .intro-span {
   box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.233);
 }
 
-.about-div .photo-div .about-photo-overlay {
-  /* Adds overlay on each work, but not visible because of opacity 0 */
-  position: absolute;
-  width: 220px;
-  height: 220px;
-  border-radius: 3px;
-  background: rgb(255, 255, 255);
-}
-
-.about-div .photo-div .about-photo-overlay1 {
-  left: 220px;
-  bottom: 0;
-}
-
-.about-div .photo-div .about-photo-overlay2 {
-  top: 0;
-  right: 0;
-}
-
 /* ================================= CONTACT SECTION ================================ */
 .contact-div {
   background: url(./utilities/zichygraphs/butterfly.jpg) no-repeat center/cover;
   padding-top: 210px;
   padding-bottom: 100px;
   margin-bottom: 100px;
-  /* background-color: red; */
   display: flex;
-  /* flex-wrap: wrap; */
   width: 100%;
   max-width: 1500px;
   justify-content: space-between;
   align-items: center;
   height: 70vh;
   position: relative;
-  mask-image: linear-gradient(to top, rgba(11, 153, 58, 1), rgba(11, 153, 58, 0));
+  mask-image: linear-gradient(
+    to top,
+    rgba(11, 153, 58, 1),
+    rgba(11, 153, 58, 0)
+  );
 }
-.contact-section-title-div{
-    /* margin-top: 30px; */
-    position: absolute;
-    z-index: 1;
-    cursor: default;
+.contact-section-title-div {
+  position: absolute;
+  z-index: 1;
+  cursor: default;
 }
 
-.contact-bg-para p{
+.contact-bg-para p {
   font-family: Exotic350BT-Bold, "Segoe UI", sans-serif;
   margin-left: 70px;
-  color: rgb(255, 255, 255) ;
+  color: rgb(255, 255, 255);
   font-size: 5em !important;
+}
+
+.contact-bg-para article {
+  display: flex;
+  height: fit-content;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+}
+.contact-bg-para article .social-icon {
+  margin: 0 10px;
 }
 
 .contact-img {
@@ -468,14 +466,12 @@ header .intro p .intro-span {
   width: 800px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-
 }
 .contact-page {
   width: 50%;
   height: 400px;
   margin-right: 70px;
   box-shadow: 0.1px 0.1px 10px rgba(63, 66, 64, 0.377);
-  /* padding: 20px; */
   border-radius: 3px;
   background-color: white;
   position: absolute;
@@ -484,25 +480,198 @@ header .intro p .intro-span {
 
   z-index: 3;
 }
-.contact-page input,textarea {
+.contact-page input,
+textarea {
   display: block;
   border: none;
   border-bottom: 1px solid #dfdde0;
+  width: "33ch";
 }
-/* .contact-page input:focus,textarea:focus {
-  border-bottom: 1px solid #a2a1a3;
 
-} */
-/* ================================= CONTACT SECTION ================================ */
-footer{
-  width: 97%;
+/* ================================= FOOTER SECTION ================================ */
+footer {
+  width: 100vw;
   height: 70px;
-  margin: 0 auto;
-  border-top: 1px solid #686e6a;
+  /* display: flex;
+  justify-content: center; */
 }
-footer div{
-  width: 100%;
+footer > div {
+  width: 97%;
+  border-top: 1px solid #686e6a;
+  margin: 0 auto;
+}
+footer div > div {
   margin: 10px 40px;
+}
+
+/* ===================================================================================== 
+
+
+                                      MEDIA QUERIES 
+
+
+======================================================================================== */
+
+@media screen and (max-width: 360px) {
+  /* BUTTONS */
+  .btn {
+    /* Specifies the properties of all buttons including header button */
+    font-weight: 600;
+    /* font-size: 20px; */
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .btn-for-header {
+    /* Specifies the size of the header button */
+    border: none;
+    width: 140px;
+    height: 40px;
+  }
+  .btn-for-general {
+    /* Specifies the size of the button excluding header button */
+    width: 150px;
+    height: 40px;
+    /* box-shadow: 0.1px 0.1px 20px rgba(130, 133, 131, 0.233); */
+  }
+
+  /* HEADER */
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 70vh;
+  }
+  header .intro {
+    background-color: rgba(0, 0, 0, 0.575);
+    padding: 20px;
+    border-radius: 10px;
+    position: static;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width: 220px;
+    height: 260px;
+  }
+  header .intro p {
+    color: white;
+    font-size: 2rem;
+    font-weight: 100;
+    margin-bottom: 10px;
+  }
+
+  /* NAVBAR */
+  .navbarfixed {
+    display: none;
+  }
+  .navbar {
+    display: none;
+  }
+
+  /* TITLES */
+  .section-title-div {
+    margin-top: 40px;
+  }
+  .contact-section-title-div {
+    margin-top: 40px;
+  }
+  .section-title {
+    font-size: 60px;
+    font-weight: 600;
+    color: rgba(11, 153, 58, 0.6);
+  }
+  .left-section-title {
+    /* For the titles aligned on the left */
+    left: 0;
+  }
+  .about-section-title {
+    right: 0px;
+  }
+
+  /* FILTERS */
+  .filter {
+    margin-top: 130px;
+    width: 100%;
+  }
+  .filter-btn {
+    padding: 0 5px;
+  }
+  .filter-btn a {
+    height: 40px;
+    font-size: 0.6rem;
+  }
+
+  
+  /* WORKS */
+  .works-gallery {
+    padding-top: 180px;
+  }
+  .works-img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* ABOUT */
+  .about-div {
+    padding-top: 120px;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 40vh;
+margin-bottom: 40px;
+  }
+  .about-div article {
+    background-color: rgba(243, 243, 243, 0.664);
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 100%;
+  }
+  .about-div article p {
+    margin: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 1rem;
+  }
+  .my-photo-smscrn{
+    display: initial;
+    width: 80px;
+    height: 80px;
+    background-color: white;
+    border-radius: 50%;
+    transform: translateY(50%);
+  }
+  .about-div .photo-div {
+    background: none;
+    display: none;
+  }
+  
+  /* CONTACT */
+  .contact-div {
+    background: url(./utilities/zichygraphs/butterfly.jpg) no-repeat
+      center/cover;
+    padding-top: 210px;
+    padding-bottom: 100px;
+    margin-bottom: 100px;
+    display: block;
+    width: 100%;
+    max-width: 1500px;
+    justify-content: space-between;
+    align-items: center;
+    height: 70vh;
+    position: relative;
+    mask-image: linear-gradient(
+      to top,
+      rgba(11, 153, 58, 1),
+      rgba(11, 153, 58, 0)
+    );
+  }
+  .contact-bg-para p {
+    display: none;
+  }
+  .contact-page{
+    margin:0 ;
+    width: 100%;
+  }
 }
 
 /* .App {
