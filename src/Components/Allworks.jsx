@@ -7,50 +7,62 @@ const works = [
   {
     id: 1,
     img: work1,
+    category:'logos'
   },
   {
     id: 2,
     img: work2,
+    category:'Business cards'
   },
   {
     id: 3,
     img: work3,
+    category:'logos'
   },
   {
     id: 4,
     img: work4,
+    category:'posters'
   },
   {
     id: 5,
     img: work2,
+    category:'flyers'
   },
   {
     id: 6,
     img: work4,
+    category:'logos'
   },
   {
     id: 7,
     img: work1,
+    category:'logos'
   },
   {
     id: 8,
     img: work3,
+    category:'flyers'
   },
   {
     id: 9,
     img: work2,
+    category:'logos'
   },
   {
     id: 10,
     img: work4,
+    category:'business card'
   },
   {
     id: 11,
     img: work1,
+    category:'logos'
   },
   {
     id: 12,
     img: work3,
+    category:'logos'
   },
 ];
 

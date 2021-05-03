@@ -108,7 +108,7 @@ export default function Contact() {
             style={{ margin: 8 }}
           />
           <Button
-            className="btn btn-for-general btn-without-bg" value='Send'
+            className="btn btn-for-general btn-with-bg" value='Send'
           />
           {/* </ThemeProvider> */}
         </form>

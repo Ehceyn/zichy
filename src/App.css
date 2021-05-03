@@ -325,7 +325,7 @@ header .intro p .intro-span {
   /* Adds overlay on each work, but not visible because of opacity 0 */
   position: absolute;
   display: flex;
-  flex-direction: column-reverse;
+  /* justify-content: space-between; */
   align-items: flex-end;
   top: 0;
   left: 0;
@@ -336,8 +336,30 @@ header .intro p .intro-span {
   border-radius: 3px;
   cursor: zoom-in;
   transition: 0.3s ease;
-  background: rgba(255, 255, 255, 0.507);
+  background: rgba(14, 13, 13, 0.507);
   opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+.works .overlay > div {
+  /* background-color: red; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 23px 25px;
+}
+
+.works .overlay article > p {
+  color: white;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.works .overlay article > div {
+  width: 30px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.726);
 }
 
 .works .overlay .fav-btn-div {
@@ -345,12 +367,6 @@ header .intro p .intro-span {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 25px 25px;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  background-color: white;
-  box-shadow: 0.1px 0.1px 10px rgba(138, 137, 137, 0.616);
   cursor: pointer;
 }
 
@@ -385,8 +401,8 @@ header .intro p .intro-span {
   font-weight: 400;
   color: #686e6a;
 }
-.my-photo-smscrn{
- display: none;
+.my-photo-smscrn {
+  display: none;
 }
 .about-div .photo-div {
   position: relative;
@@ -571,6 +587,23 @@ footer div > div {
   /* TITLES */
   .section-title-div {
     margin-top: 40px;
+    /* background-color: red; */
+  }
+  .title .underline {
+    width: 100px;
+    border-bottom: 4px solid rgba(11, 153, 58, 0.6);
+  }
+  .line-left {
+    height: 4px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .line-right {
+    height: 4px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
   }
   .contact-section-title-div {
     margin-top: 40px;
@@ -590,6 +623,7 @@ footer div > div {
 
   /* FILTERS */
   .filter {
+    display: none;
     margin-top: 130px;
     width: 100%;
   }
@@ -601,14 +635,35 @@ footer div > div {
     font-size: 0.6rem;
   }
 
-  
   /* WORKS */
   .works-gallery {
-    padding-top: 180px;
+    padding-top: 140px;
+  }
+  .works-div {
+    box-shadow: none;
+    margin: 10px;
+    padding: 0;
   }
   .works-img {
     width: 100%;
-    height: auto;
+    height: 100%;
+  }
+  .works .overlay {
+    /* Adds overlay on each work, but not visible because of opacity 0 */
+    background: linear-gradient(
+      transparent 0%,
+      rgba(40, 43, 47, 0) 25%,
+      rgba(40, 43, 47, 0.15) 60%,
+      rgb(40, 43, 47) 90%
+    );
+    opacity: 1;
+  }
+  .works .overlay .fav-btn-div {
+    /* styles the div of the heart icon */
+    height: 0;
+    width: 0;
+    border-radius: 50%;
+    background: none;
   }
 
   /* ABOUT */
@@ -617,7 +672,7 @@ footer div > div {
     flex-wrap: wrap;
     width: 100%;
     height: 40vh;
-margin-bottom: 40px;
+    margin-bottom: 70px;
   }
   .about-div article {
     background-color: rgba(243, 243, 243, 0.664);
@@ -627,15 +682,16 @@ margin-bottom: 40px;
     width: 100%;
   }
   .about-div article p {
-    margin: 10px;
+    margin: 30px 10px;
     margin-bottom: 0;
     text-align: center;
     font-size: 1rem;
+    font-weight: 200;
   }
-  .my-photo-smscrn{
+  .my-photo-smscrn {
     display: initial;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     background-color: white;
     border-radius: 50%;
     transform: translateY(50%);
@@ -644,7 +700,7 @@ margin-bottom: 40px;
     background: none;
     display: none;
   }
-  
+
   /* CONTACT */
   .contact-div {
     background: url(./utilities/zichygraphs/butterfly.jpg) no-repeat
@@ -668,8 +724,8 @@ margin-bottom: 40px;
   .contact-bg-para p {
     display: none;
   }
-  .contact-page{
-    margin:0 ;
+  .contact-page {
+    margin: 0;
     width: 100%;
   }
 }

@@ -34,11 +34,14 @@ function App() {
           divNameAttr="works"
           title="works"
           pName="WORKS"
+          upLinePosition='line-left'
+          downLinePosition='line-right'
+
         />
         <Filter />
         <div className="works-gallery">
           {works.map((work, index) => {
-            return <Works key={index} img={work.img} />;
+            return <Works key={index} img={work.img} category={work.category} />;
           })}
         </div>
       </section>
@@ -48,6 +51,9 @@ function App() {
           divNameAttr="about"
           title="about"
           pName="ABOUT"
+          upLinePosition='line-right'
+        downLinePosition='line-left'
+
         />
         <About />
       </section>
@@ -58,6 +64,9 @@ function App() {
           divNameAttr="contact"
           title="contact"
           pName="CONTACT"
+          upLinePosition='line-left'
+          downLinePosition='line-right'
+
         />
         <Contact />
       </section>
