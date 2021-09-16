@@ -15,7 +15,7 @@ function NavbarFixed() {
               to="home"
               spy={true}
               smooth={true}
-              offset={0}
+              offset={-150}
               duration={500}
             >
               <p className="link" href="#home">
@@ -29,7 +29,7 @@ function NavbarFixed() {
               to="works"
               spy={true}
               smooth={true}
-              offset={0}
+              offset={-10}
               duration={500}
             >
               <p className="link" href="#works">
@@ -43,7 +43,7 @@ function NavbarFixed() {
               to="about"
               spy={true}
               smooth={true}
-              offset={0}
+              offset={-20}
               duration={500}
             >
               <p className="link" href="#about">

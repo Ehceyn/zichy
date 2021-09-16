@@ -7,63 +7,63 @@ const works = [
   {
     id: 1,
     img: work1,
-    category:'logos'
+    category: "logos",
   },
   {
     id: 2,
     img: work2,
-    category:'Business cards'
+    category: "Business Cards",
   },
   {
     id: 3,
     img: work3,
-    category:'logos'
+    category: "logos",
   },
   {
     id: 4,
     img: work4,
-    category:'posters'
+    category: "posters",
   },
   {
     id: 5,
     img: work2,
-    category:'flyers'
+    category: "flyers",
   },
   {
     id: 6,
     img: work4,
-    category:'logos'
+    category: "logos",
   },
   {
     id: 7,
     img: work1,
-    category:'logos'
+    category: "Business Cards",
   },
   {
     id: 8,
     img: work3,
-    category:'flyers'
+    category: "flyers",
   },
-  {
-    id: 9,
-    img: work2,
-    category:'logos'
-  },
-  {
-    id: 10,
-    img: work4,
-    category:'business card'
-  },
-  {
-    id: 11,
-    img: work1,
-    category:'logos'
-  },
-  {
-    id: 12,
-    img: work3,
-    category:'logos'
-  },
+  // {
+  //   id: 9,
+  //   img: work2,
+  //   category:'logos'
+  // },
+  // {
+  //   id: 10,
+  //   img: work4,
+  //   category:'business card'
+  // },
+  // {
+  //   id: 11,
+  //   img: work1,
+  //   category:'logos'
+  // },
+  // {
+  //   id: 12,
+  //   img: work3,
+  //   category:'logos'
+  // },
 ];
 
 export default works;

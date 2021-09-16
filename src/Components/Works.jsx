@@ -1,33 +1,44 @@
 import React, { useState } from "react";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { Favorite } from "@material-ui/icons";
+import { Favorite, RemoveRedEye } from "@material-ui/icons";
 
 function Works(props) {
-  const [toggle, setToggle] = useState(false);
+  const [toggl, setToggl] = useState(false);
 
   function handleClick() {
-    setToggle(!toggle);
+    setToggl(!toggl);
   }
-  // console.log(toggle);
+  
 
   return (
     <div className="works-div">
-      <img src={props.img} alt="" className="works-img" />
-      <div className="overlay">
-        <div>
-          <article>
-            <p>{props.category}</p>
-            <div></div>
-          </article>
-          <div className="fav-btn-div" onClick={handleClick}>
-            {toggle ? (
-              <Favorite style={{ color: "white" }} />
-            ) : (
-              <FavoriteBorderIcon style={{ color: "rgba(255, 255, 255, 0.726)" }} />
-            )}
-          </div>
+      <div
+        onClick={() => {
+          props.viewThisProject(props.id);
+        }}
+      >
+        <img src={props.img} alt="" className="works-img" />
+        <div className="overlay">
+          <RemoveRedEye titleAccess="VIEW PROJECT" />
         </div>
       </div>
+
+      <article className="work-info">
+        <div className="category-div">
+          <p>{props.category}</p>
+          <div></div>
+        </div>
+
+        <div className="fav-btn" onClick={handleClick}>
+          {toggl ? (
+            <Favorite style={{ color: "black", cursor: "pointer" }} />
+          ) : (
+            <FavoriteBorderIcon
+              style={{ color: "rgba(0, 0, 0, 0.726)", cursor: "pointer" }}
+            />
+          )}
+        </div>
+      </article>
     </div>
   );
 }

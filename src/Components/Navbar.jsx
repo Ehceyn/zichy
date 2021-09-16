@@ -17,7 +17,7 @@ function Navbar() {
             to="home"
             spy={true}
             smooth={true}
-            offset={0}
+            offset={-150}
             duration={500}
           >
             <p className="link" href="#home">

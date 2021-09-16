@@ -9,14 +9,18 @@ function About() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
           doloribus harum eos numquam perferendis facere necessitatibus amet,
           officia tempore dolorem dolorum aliquid nam odit placeat voluptatem
+          iusto nostrum aliquam totam! <br />
+          <br />
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+          doloribus harum eos numquam perferendis facere necessitatibus amet,
+          officia tempore dolorem dolorum aliquid nam odit placeat voluptatem
           iusto nostrum aliquam totam!
         </p>
+
         <img src={myPhoto} alt="myPhoto" className="my-photo-smscrn " />
       </article>
       <div className="about photo-div">
-        <div>
         <img src={myPhoto} alt="myPhoto" className="my-photo " />
-        </div>
       </div>
     </div>
   );

@@ -17,11 +17,24 @@
   margin: 0;
   text-decoration: none;
   font-family: Lato, "Segoe UI", sans-serif;
+  box-sizing: border-box;
+}
+html,
+body,
+div,
+img {
+  vertical-align: baseline;
 }
 body {
+  /* position: re; */
   width: 100vw;
   background-color: white;
   overflow-x: hidden;
+  line-height: 1;
+}
+.container {
+  /* position: relative; */
+  max-width: 1500px;
 }
 
 /* =======================================================================
@@ -86,16 +99,19 @@ Headers color      :      #1dbf73
   background-color: #0b993a;
   color: white;
 }
-img {
-  width: 110px;
-  height: 110px;
+.see-more-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 /* ==== TITLES SECTION === */
 .section-title-div {
+  display: flex;
+  justify-content: flex-start;
   margin-top: 30px;
-  position: absolute;
-  z-index: -1;
+  width: 100%;
+  cursor: default;
 }
 .section-title {
   font-size: 260px;
@@ -104,27 +120,46 @@ img {
 }
 .left-section-title {
   /* For the titles aligned on the left */
-  left: -55px;
+  transform: translateX(-50px);
 }
 .about-section-title {
-  right: -55px;
+  transform: translateX(55px);
 }
+.about-section-title-div {
+  display: flex;
+  justify-content: flex-end;
+  cursor: default;
+}
+
+/* ==== IMAGE SECTION === */
+
+img {
+  width: 250px;
+  height: 250px;
+}
+
+/* ==== HAMBURGER SECTION === */
+.hamburger {
+  display: none;
+}
+
 /* ================================= HEADER SECTION ================================ */
 
 header {
+  position: relative;
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100vh;
   background: url(./utilities/zichygraphs/neon\ bg.jpg) no-repeat center/cover;
 }
 
 header .intro {
-  position: absolute;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  bottom: 70px;
-  left: 70px;
+  margin-top: 50px;
+  margin-left: 70px;
   width: 450px;
   height: 350px;
 }
@@ -132,7 +167,7 @@ header .intro {
 header .intro p {
   color: white;
   font-size: 3.4rem;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 header .intro p .intro-span {
@@ -144,11 +179,13 @@ header .intro p .intro-span {
 .navbar {
   display: flex;
   position: absolute;
+  align-self: flex-start;
   justify-content: space-between;
   width: 100%;
   height: 80px;
   z-index: 2;
   padding-top: 10px;
+  transition: 0.5s linear;
 }
 .navbar::after {
   content: "";
@@ -192,8 +229,13 @@ header .intro p .intro-span {
   text-transform: uppercase;
   cursor: pointer;
 }
+.navbarfixed .nav-links .link:hover,
 .navbar .nav-links .link:hover {
-  color: #0b993a;
+  color: #066c28;
+}
+
+.navbarfixed .nav-links .link:visited {
+  background-color: #993f0b !important;
 }
 
 .navbarfixed {
@@ -256,10 +298,8 @@ header .intro p .intro-span {
 .filter {
   display: flex;
   justify-content: center;
-  margin-top: 250px;
+  transform: translateY(-50px);
   width: 100%;
-  position: absolute;
-  z-index: 2;
 }
 .filter-btn {
   display: flex;
@@ -269,7 +309,7 @@ header .intro p .intro-span {
   align-items: center;
   background: rgba(255, 255, 255, 0.69);
   border-radius: 3px;
-  box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.1);
+  box-shadow: 0.1px 0.1px 10px rgba(147, 150, 148, 0.1);
 }
 .filter-btn a {
   display: flex;
@@ -278,6 +318,8 @@ header .intro p .intro-span {
   font-size: 14px;
   font-weight: 600;
   color: #0b993a;
+  cursor: pointer;
+  text-transform: capitalize;
 }
 
 .filter-btn a:hover {
@@ -293,92 +335,91 @@ header .intro p .intro-span {
 }
 
 .works-gallery {
-  padding-top: 370px;
+  padding: 5px;
+  /* padding-top: 370px; */
   background-color: transparent;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  max-width: 1500px;
   height: fit-content;
+  min-height: 350px;
   justify-content: center;
   align-items: center;
 }
 
 .works-div {
-  position: relative;
   margin: 10px;
+  width: 250px;
+  height: 320px;
   background-color: #ffffff;
-  padding: 10px;
+  padding: 10px 10px 10px 10px;
   border-radius: 3px;
-  box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.1);
+  box-shadow: 0.1px 0.1px 10px rgba(147, 150, 148, 0.1);
+  cursor: default;
 }
 
 .works-img {
-  width: 250px;
-  max-width: 250px;
+  width: 100%;
+  max-width: 350;
   height: 250px;
-  border-radius: 3px;
-  cursor: zoom-in;
+  border-radius: 3px 3px 0 0;
 }
 
-.works .overlay {
-  /* Adds overlay on each work, but not visible because of opacity 0 */
-  position: absolute;
+.works-div > div {
+  position: relative;
+}
+
+.works-div .overlay {
   display: flex;
-  /* justify-content: space-between; */
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  border-radius: 3px 3px 0 0;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 3px;
-  cursor: zoom-in;
-  transition: 0.3s ease;
-  background: rgba(14, 13, 13, 0.507);
+  width: 250px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0.596);
   opacity: 0;
   transition: all 0.3s ease-in;
+  cursor: zoom-in;
 }
 
-.works .overlay > div {
-  /* background-color: red; */
-  width: 100%;
+.works .work-info {
+  /* background-color: rgb(243, 241, 241); */
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 23px 25px;
 }
 
-.works .overlay article > p {
-  color: white;
+.works .work-info p {
+  color: rgb(0, 0, 0);
   text-transform: capitalize;
   margin-bottom: 5px;
   font-weight: 600;
 }
 
-.works .overlay article > div {
+.work-info .category-div div {
   width: 30px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.726);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.726);
+  transition: all 0.3s ease-in;
 }
 
-.works .overlay .fav-btn-div {
-  /* styles the div of the heart icon */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+.works .works-div:hover .work-info .category-div div {
+  width: 100%;
 }
-
-.works-div:hover .overlay {
+.works .works-div:hover .overlay {
   /* Increases the opacity of overlay to 1, thereby is visible on the works image */
   opacity: 1;
 }
 
 /* ================================= ABOUT SECTION ================================ */
 .about-div {
-  padding-top: 170px;
   display: flex;
+  background-color: #eff3f0;
+  border: 0px solid #00264173;
+  border-left: 100px solid white;
+  border-right: 100px solid white;
   flex-wrap: wrap;
   width: 100%;
   max-width: 1500px;
@@ -386,77 +427,64 @@ header .intro p .intro-span {
   justify-content: space-between;
   align-items: center;
   height: 80vh;
+  /* transform: translateY(-70px); */
 }
 
 .about-div article {
+  /* background: url(./utilities/zichygraphs/dark-green-wall.jpg) no-repeat
+    center/cover; */
+  border-left: none;
+  border-radius: 0 10px 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
   width: 50%;
+  height: 300px;
 }
 .about-div article p {
   margin: 70px;
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: #686e6a;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: black;
+  line-height: 1.8rem;
 }
 .my-photo-smscrn {
   display: none;
 }
 .about-div .photo-div {
-  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 50%;
-  height: 500px;
-}
-
-.about-div .photo-div div {
-  background: url(./utilities/zichygraphs/bird.jpg) no-repeat center/cover;
-  width: 88%;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  border-radius: 10px 0 0 10px;
 }
 
 .about-div .photo-div .my-photo {
-  transform: translateX(-85px);
-  width: 250px;
-  max-width: 250px;
+  transform: translateX(-95px);
+  width: 300px;
+  max-width: 300px;
   height: 300px;
-  border-radius: 3px;
   background-color: #ffffff;
-  padding: 10px;
-  border-radius: 3px;
-  box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.233);
+  border: 1px solid #ffffff59;
+  /* border-radius: 50%; */
+  /* box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.233); */
 }
 
 /* ================================= CONTACT SECTION ================================ */
 .contact-div {
   background: url(./utilities/zichygraphs/butterfly.jpg) no-repeat center/cover;
-  padding-top: 210px;
   padding-bottom: 100px;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   display: flex;
   width: 100%;
   max-width: 1500px;
   justify-content: space-between;
   align-items: center;
   height: 70vh;
-  position: relative;
   mask-image: linear-gradient(
     to top,
     rgba(11, 153, 58, 1),
     rgba(11, 153, 58, 0)
   );
-}
-.contact-section-title-div {
-  position: absolute;
-  z-index: 1;
-  cursor: default;
 }
 
 .contact-bg-para p {
@@ -490,7 +518,7 @@ header .intro p .intro-span {
   box-shadow: 0.1px 0.1px 10px rgba(63, 66, 64, 0.377);
   border-radius: 3px;
   background-color: white;
-  position: absolute;
+  /* position: absolute; */
   top: 250px;
   right: 0;
 
@@ -506,18 +534,20 @@ textarea {
 
 /* ================================= FOOTER SECTION ================================ */
 footer {
-  width: 100vw;
+  width: 100%;
   height: 70px;
-  /* display: flex;
-  justify-content: center; */
+  margin: 0;
+  align-items: center;
+  display: flex;
+  border-top: 0.1px solid #9b9e9c;
 }
 footer > div {
-  width: 97%;
-  border-top: 1px solid #686e6a;
-  margin: 0 auto;
-}
-footer div > div {
-  margin: 10px 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 70px;
+  color: #9b9e9c;
 }
 
 /* ===================================================================================== 
@@ -533,7 +563,6 @@ footer div > div {
   .btn {
     /* Specifies the properties of all buttons including header button */
     font-weight: 600;
-    /* font-size: 20px; */
     border-radius: 3px;
     cursor: pointer;
   }
@@ -547,7 +576,6 @@ footer div > div {
     /* Specifies the size of the button excluding header button */
     width: 150px;
     height: 40px;
-    /* box-shadow: 0.1px 0.1px 20px rgba(130, 133, 131, 0.233); */
   }
 
   /* HEADER */
@@ -556,32 +584,89 @@ footer div > div {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 70vh;
+    height: 80vh;
   }
   header .intro {
     background-color: rgba(0, 0, 0, 0.575);
-    padding: 20px;
-    border-radius: 10px;
     position: static;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    width: 220px;
-    height: 260px;
+    margin: 0;
+    padding: 0 5px;
+    width: 100%;
+    height: 80vh;
   }
   header .intro p {
     color: white;
     font-size: 2rem;
-    font-weight: 100;
-    margin-bottom: 10px;
+    line-height: 2.5rem;
+    margin-bottom: 40px;
   }
 
   /* NAVBAR */
-  .navbarfixed {
-    display: none;
+  /* .navbarfixed {
+    display: block;
   }
   .navbar {
-    display: none;
+    display: block;
+  } */
+
+  /* Hamburger menu: some stylings are in 'HamburgerMenu.jsx' component */
+  .hamburger {
+    display: block;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    /* transition: all 0.3s linear; */
+  }
+
+  .ham-logo-div {
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    /* transition: all 0.3s linear; */
+  }
+
+  .ham-logo {
+    font-size: 20px;
+    object-fit: contain;
+    font-family: Exotic350BT-Bold, "Segoe UI", sans-serif;
+  }
+
+  .ham-div {
+    background: rgb(255, 255, 255);
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 92vh;
+    padding: 40px 0;
+    /* transition: all 0.3s linear; */
+  }
+
+  .ham-div li {
+    list-style: none;
+    margin: 30px;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .ham-div article {
+    display: flex;
+    height: fit-content;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .ham-div article .social-icon {
+    margin: 5px;
   }
 
   /* TITLES */
@@ -637,33 +722,50 @@ footer div > div {
 
   /* WORKS */
   .works-gallery {
+    padding: 0;
     padding-top: 140px;
   }
+
   .works-div {
-    box-shadow: none;
+    position: relative;
+    width: 100%;
     margin: 10px;
-    padding: 0;
+    background-color: #ffffff;
+    padding: 10px 10px 0 10px;
+    border-radius: 3px;
+    box-shadow: none;
+    border: 1px solid rgba(231, 229, 229, 0.795);
   }
+
   .works-img {
     width: 100%;
-    height: 100%;
+    max-width: 350px;
+    height: 250px;
+    border-radius: 3px 3px 0 0;
   }
-  .works .overlay {
-    /* Adds overlay on each work, but not visible because of opacity 0 */
-    background: linear-gradient(
-      transparent 0%,
-      rgba(40, 43, 47, 0) 25%,
-      rgba(40, 43, 47, 0.15) 60%,
-      rgb(40, 43, 47) 90%
-    );
-    opacity: 1;
+
+  .works .work-info {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  .works .overlay .fav-btn-div {
-    /* styles the div of the heart icon */
-    height: 0;
-    width: 0;
-    border-radius: 50%;
-    background: none;
+
+  .works .work-info p {
+    color: rgb(0, 0, 0);
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+
+  .works .work-info .category-div div {
+    width: 30px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.726);
+  }
+
+  .works-div:hover .overlay {
+    /* Increases the opacity of overlay to 1, thereby is visible on the works image */
+    opacity: 0;
   }
 
   /* ABOUT */
@@ -675,7 +777,7 @@ footer div > div {
     margin-bottom: 70px;
   }
   .about-div article {
-    background-color: rgba(243, 243, 243, 0.664);
+    background-color: rgba(0, 0, 0, 0.664);
     display: flex;
     flex-direction: column;
     height: fit-content;
@@ -687,14 +789,17 @@ footer div > div {
     text-align: center;
     font-size: 1rem;
     font-weight: 200;
+    color: white;
+    line-height: 1.7rem;
   }
   .my-photo-smscrn {
     display: initial;
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     background-color: white;
     border-radius: 50%;
     transform: translateY(50%);
+    border: 5px solid rgba(0, 0, 0, 0.479);
   }
   .about-div .photo-div {
     background: none;
