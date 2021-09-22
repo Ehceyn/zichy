@@ -84,6 +84,9 @@ Headers color      :      #1dbf73
   background: #0b993a;
   color: white;
 }
+.btns {
+  cursor: pointer;
+}
 .btn-with-bg:hover {
   /* For the buttons with background-color 'green' onhover */
   background: rgba(7, 126, 47, 0.855);
@@ -224,14 +227,14 @@ header .intro p .intro-span {
   align-items: center;
   height: 80px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: bold;
   color: white;
   text-transform: uppercase;
   cursor: pointer;
 }
 .navbarfixed .nav-links .link:hover,
 .navbar .nav-links .link:hover {
-  color: #066c28;
+  color: #a5e9bd;
 }
 
 .navbarfixed .nav-links .link:visited {
@@ -250,10 +253,12 @@ header .intro p .intro-span {
   z-index: 5;
   box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.1);
   transition: 0.5s linear;
+  padding-right: 70px;
 }
 
 .navbarfixed .logo-div {
   margin-left: 70px;
+
   color: rgba(11, 153, 58, 0.747);
   font-size: 40px;
   width: 150px;
@@ -262,12 +267,11 @@ header .intro p .intro-span {
 }
 
 .navbarfixed .nav-links {
-  position: absolute;
   right: 0;
   display: flex;
-  width: 70%;
+  width: 700px;
   list-style: none;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   z-index: 3;
 }
@@ -277,10 +281,25 @@ header .intro p .intro-span {
   align-items: center;
   height: 80px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: bold;
   color: #0b993a;
   text-transform: uppercase;
   cursor: pointer;
+}
+.navbarfixed .nav-links .link:hover {
+  color: #09722c;
+}
+.favCount {
+  background-color: black;
+  color: white;
+  font-size: smaller;
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  text-align: center;
+  left: 24px;
+  bottom: 2px;
 }
 .fadeOut {
   opacity: 0;
@@ -294,6 +313,17 @@ header .intro p .intro-span {
   height: 100px;
   transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
 }
+
+.navbarfixed .nav-links-fav {
+  right: 0;
+  display: flex;
+  width: 400px;
+  list-style: none;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+}
+
 /* ================================= FILTER SECTION ================================ */
 .filter {
   display: flex;
@@ -311,18 +341,20 @@ header .intro p .intro-span {
   border-radius: 3px;
   box-shadow: 0.1px 0.1px 10px rgba(147, 150, 148, 0.1);
 }
-.filter-btn a {
+.filter-btn button {
   display: flex;
+  border: none;
+  background: none !important;
   align-items: center;
   height: 80px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: bold;
   color: #0b993a;
   cursor: pointer;
   text-transform: capitalize;
 }
 
-.filter-btn a:hover {
+.filter-btn button:hover {
   height: 20px;
   border-bottom: 2px solid #0b993a;
 }
@@ -431,8 +463,6 @@ header .intro p .intro-span {
 }
 
 .about-div article {
-  /* background: url(./utilities/zichygraphs/dark-green-wall.jpg) no-repeat
-    center/cover; */
   border-left: none;
   border-radius: 0 10px 10px 0;
   display: flex;
@@ -470,28 +500,28 @@ header .intro p .intro-span {
 }
 
 /* ================================= CONTACT SECTION ================================ */
+.contact-container {
+  display: flex;
+  height: 70vh;
+  width: 100vw;
+  margin-bottom: 70px;
+  justify-content: center;
+  background-color: red;
+}
 .contact-div {
   background: url(./utilities/zichygraphs/butterfly.jpg) no-repeat center/cover;
-  padding-bottom: 100px;
-  /* margin-bottom: 100px; */
   display: flex;
-  width: 100%;
+  width: 50%;
   max-width: 1500px;
   justify-content: space-between;
   align-items: center;
-  height: 70vh;
-  mask-image: linear-gradient(
-    to top,
-    rgba(11, 153, 58, 1),
-    rgba(11, 153, 58, 0)
-  );
 }
 
 .contact-bg-para p {
   font-family: Exotic350BT-Bold, "Segoe UI", sans-serif;
   margin-left: 70px;
   color: rgb(255, 255, 255);
-  font-size: 5em !important;
+  font-size: 5rem !important;
 }
 
 .contact-bg-para article {
@@ -513,16 +543,12 @@ header .intro p .intro-span {
 }
 .contact-page {
   width: 50%;
-  height: 400px;
-  margin-right: 70px;
-  box-shadow: 0.1px 0.1px 10px rgba(63, 66, 64, 0.377);
-  border-radius: 3px;
-  background-color: white;
-  /* position: absolute; */
-  top: 250px;
-  right: 0;
+  /* border-radius: 3px; */
+  border: 3px solid #c9d4d5;
+  border-left: 0;
+  border-right: 0;
 
-  z-index: 3;
+  background-color: white;
 }
 .contact-page input,
 textarea {
@@ -715,7 +741,9 @@ footer > div {
   .filter-btn {
     padding: 0 5px;
   }
-  .filter-btn a {
+  .filter-btn button {
+    border: none !important;
+    background: none !important;
     height: 40px;
     font-size: 0.6rem;
   }
@@ -770,12 +798,14 @@ footer > div {
 
   /* ABOUT */
   .about-div {
+    border: 0;
     padding-top: 120px;
     flex-wrap: wrap;
     width: 100%;
     height: 40vh;
     margin-bottom: 70px;
   }
+
   .about-div article {
     background-color: rgba(0, 0, 0, 0.664);
     display: flex;
@@ -792,6 +822,7 @@ footer > div {
     color: white;
     line-height: 1.7rem;
   }
+
   .my-photo-smscrn {
     display: initial;
     width: 110px;
@@ -819,12 +850,10 @@ footer > div {
     justify-content: space-between;
     align-items: center;
     height: 70vh;
-    position: relative;
-    mask-image: linear-gradient(
-      to top,
-      rgba(11, 153, 58, 1),
-      rgba(11, 153, 58, 0)
-    );
+    /* position: relative; */
+  }
+  .contact-container {
+    display: block;
   }
   .contact-bg-para p {
     display: none;

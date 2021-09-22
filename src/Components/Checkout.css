@@ -1,0 +1,29 @@
+.checkout {
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  padding: 20px;
+  background-color: white;
+  height: max-content;
+  width: 100vw;
+}
+
+.checkout-title {
+  margin-right: 10px;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.checkout-ad {
+  background: url(../utilities/zichygraphs/butterfly.jpg) no-repeat center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1350px;
+  height: 40vh;
+  margin-bottom: 10px;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: white;
+}

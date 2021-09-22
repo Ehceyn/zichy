@@ -35,12 +35,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function Contact() {
   const classes = useStyles();
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="contact-container">
       <div className="contact-div">
         <div className="contact-bg-para">
           <p>ZICHYgraphs</p>
@@ -107,9 +106,7 @@ export default function Contact() {
             fullWidth
             style={{ margin: 8 }}
           />
-          <Button
-            className="btn btn-for-general btn-with-bg" value='Send'
-          />
+          <Button className="btn btn-for-general btn-with-bg" value="Send" />
           {/* </ThemeProvider> */}
         </form>
       </div>

@@ -1,10 +1,15 @@
 import React from "react";
 import { Link } from "react-scroll";
 import zichygraphs from "../../src/utilities/zichygraphs/zichygraphs.png";
-import { Favorite } from "@material-ui/icons";
 import Buttons from "./Buttons";
+import { useStateValue } from "../StateProvider";
+import { Link as RouterLink } from "react-router-dom";
+import { Favorite } from "@material-ui/icons";
 
 function Navbar() {
+  const [{ basket }] = useStateValue();
+  console.log(basket);
+
   return (
     <div className="navbar">
       <div className="logo-div">
@@ -68,21 +73,21 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link
-            activeClass="active"
-            to="my fav"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={500}
-          >
+          <RouterLink to="/myfav">
             <p className="link" href="#my fav">
               my favorites
-              <Favorite
-                style={{ color: "red", fontSize: "200%", marginLeft: "10px" }}
-              />
+              <div style={{ position: "relative" }}>
+                <Favorite
+                  style={{
+                    color: "red",
+                    fontSize: "200%",
+                    marginLeft: "10px",
+                  }}
+                />
+                <p className="favCount">{basket?.length}</p>
+              </div>
             </p>
-          </Link>
+          </RouterLink>
         </li>
         <li>
           <Buttons

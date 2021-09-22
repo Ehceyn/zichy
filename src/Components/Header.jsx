@@ -7,19 +7,19 @@ import Buttons from "./Buttons";
 function Header(props) {
   const [navbar, setNavbar] = useState();
 
-  window.onload = handleScroll;
+  window.onscroll = handleScroll;
 
   function handleScroll() {
     setNavbar(<Navbar />);
-    if (window.outerWidth <= 800) {
-      setNavbar(<HamburgerMenu />);
+    if (window.outerHeight >= 70) {
+      setNavbar(<NavbarFixed />);
     }
   }
 
   return (
     <header>
-      {/* <Navbar /> */}
-      {navbar}
+      <NavbarFixed />
+      {/* {navbar} */}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a name="home">
         <div className="intro">

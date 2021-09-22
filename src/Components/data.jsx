@@ -7,12 +7,12 @@ const works = [
   {
     id: 1,
     img: work1,
-    category: "logos",
+    category: "Logos",
   },
   {
     id: 2,
     img: work2,
-    category: "Business Cards",
+    category: "Business cards",
   },
   {
     id: 3,
@@ -22,27 +22,27 @@ const works = [
   {
     id: 4,
     img: work4,
-    category: "posters",
+    category: "Posters",
   },
   {
     id: 5,
     img: work2,
-    category: "flyers",
+    category: "Flyers",
   },
   {
     id: 6,
     img: work4,
-    category: "logos",
+    category: "Logos",
   },
   {
     id: 7,
     img: work1,
-    category: "Business Cards",
+    category: "Business cards",
   },
   {
     id: 8,
     img: work3,
-    category: "flyers",
+    category: "Flyers",
   },
   // {
   //   id: 9,

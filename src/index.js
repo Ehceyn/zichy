@@ -1,11 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import { StateProvider } from "../src/StateProvider";
+import reducer, { initialState } from "./Reducer";
 import App from "./Components/App";
 
 ReactDOM.render(
   <>
-    <App />
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <App />
+    </StateProvider>
   </>,
   document.getElementById("root")
 );

@@ -1,9 +1,17 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+
 import { Link } from "react-scroll";
 import { Favorite } from "@material-ui/icons";
 import Buttons from "./Buttons";
+import { useStateValue } from "../StateProvider";
 
 function NavbarFixed() {
+  const [{ basket }] = useStateValue();
+  console.log(basket);
+  console.log(RouterLink);
+  console.log(Link);
+
   return (
     <div>
       <div className="navbarfixed">
@@ -65,29 +73,40 @@ function NavbarFixed() {
               </p>
             </Link>
           </li>
-          <li>
-            <Link
-              activeClass="active"
-              to="my fav"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-            >
+          <RouterLink to="/myfav">
+            <li>
               <p className="link" href="#my fav">
                 my favorites
-                <Favorite
-                  style={{ color: "red", fontSize: "200%", marginLeft: "10px" }}
-                />
+                <div style={{ position: "relative" }}>
+                  <Favorite
+                    style={{
+                      color: "red",
+                      fontSize: "200%",
+                      marginLeft: "10px",
+                    }}
+                  />
+                  <p className="favCount">{basket?.length}</p>
+                </div>
               </p>
+            </li>
+          </RouterLink>
+          <RouterLink to="/contact">
+            <Link
+              activeClass="active"
+              to="contact"
+              spy={true}
+              smooth={true}
+              offset={-30}
+              duration={500}
+            >
+              <li>
+                <Buttons
+                  value="Hire me"
+                  className="btn btn-for-general btn-with-bg"
+                />
+              </li>
             </Link>
-          </li>
-          <li>
-            <Buttons
-              value="Hire me"
-              className="btn btn-for-general btn-with-bg"
-            />
-          </li>
+          </RouterLink>
         </ul>
       </div>
       );
