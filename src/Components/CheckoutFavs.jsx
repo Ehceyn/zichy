@@ -26,15 +26,15 @@ function CheckoutFavs(props) {
           <RemoveRedEye titleAccess="VIEW PROJECT" />
         </div>
       </div>
-
       <article className="work-info">
         <div className="category-div">
           <p>{props.category}</p>
           <div></div>
         </div>
+        <div className="checkoutFavs-remove-btn">
+          <button onClick={removeFromBasket}>Remove</button>
+        </div>
       </article>
-
-      <button onClick={removeFromBasket}>Remove from basket</button>
     </div>
   );
 }

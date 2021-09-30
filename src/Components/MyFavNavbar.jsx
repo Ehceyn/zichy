@@ -6,7 +6,7 @@ import { Favorite } from "@material-ui/icons";
 import Buttons from "./Buttons";
 import { useStateValue } from "../StateProvider";
 
-function NavbarFixed() {
+function MyFavNavbar(props) {
   const [{ basket }] = useStateValue();
   console.log(basket);
   console.log(RouterLink);
@@ -42,18 +42,16 @@ function NavbarFixed() {
             </li>
           </RouterLink>
 
-          <RouterLink to="/contact">
-            <li>
-              <Buttons
-                value="Hire me"
-                className="btn btn-for-general btn-with-bg"
-              />
-            </li>
-          </RouterLink>
+          <li onClick={props.onDisplayContactDiv}>
+            <Buttons
+              value="Hire me"
+              className="btn btn-for-general btn-with-bg"
+            />
+          </li>
         </ul>
       </div>
     </div>
   );
 }
 
-export default NavbarFixed;
+export default MyFavNavbar;

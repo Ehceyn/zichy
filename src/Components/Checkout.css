@@ -1,11 +1,12 @@
 .checkout {
   /* position: relative; */
   display: flex;
-  justify-content: center;
-  flex-direction: column-reverse;
+  justify-content: space-between;
+  flex-direction: column;
   padding: 20px;
   background-color: white;
   height: max-content;
+  min-height: 100vh;
   width: 100vw;
 }
 
@@ -26,4 +27,63 @@
   font-size: 3.5rem;
   font-weight: 900;
   color: white;
+}
+
+.checkoutFavs-remove-btn {
+  border: none;
+}
+
+.checkoutFavs-remove-btn button {
+  background: none;
+  border: 1px solid black;
+  border-radius: 3px;
+  width: 60px;
+  height: 25px;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+}
+
+.checkoutFavs-remove-btn button:hover {
+  background: rgb(236, 235, 235);
+}
+
+/* .main-conatactDiv-body {
+  position: absolute;
+} */
+
+.checkout-contactDiv {
+  position: fixed;
+  z-index: 7;
+
+  background: #cdcfcdde;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.checkout-contactDiv2 {
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  height: 70vh;
+  width: 95vw;
+  justify-content: center;
+}
+.checkout-contact-close-btn {
+  display: flex;
+  align-self: flex-end;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: 1px solid black;
+  color: black;
+  border-radius: 3px;
+  width: 60px;
+  height: 25px;
+  cursor: pointer;
+  transition: all 0.1s ease-in;
+  margin-right: 85px;
+  margin-bottom: 30px;
 }

@@ -91,7 +91,11 @@ function Home() {
           upLinePosition="line-left"
           downLinePosition="line-right"
         />
-        <Contact />
+        <Contact
+          containerClass="contact-container"
+          container2="contact-container2"
+          closeClass="contact-close-btn"
+        />
       </section>
       <section>
         <Footer />

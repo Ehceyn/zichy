@@ -33,7 +33,8 @@ function Works(props) {
         category: props.category,
       },
     });
-    console.log(dispatch);
+    // localStorage.setItem(`${props.id}`, JSON.stringify(dispatch));
+    // console.log(dispatch);
   };
   const removeFromBasket = () => {
     // passes the id to the reducer to remove the id from basket and return the state and the remaining basket items
