@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 import { Link } from "react-scroll";
@@ -11,6 +11,10 @@ function NavbarFixed() {
   console.log(basket);
   console.log(RouterLink);
   console.log(Link);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(basket));
+  }, [basket]);
 
   return (
     <div>

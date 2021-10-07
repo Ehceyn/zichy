@@ -1,7 +1,9 @@
 import idMaker from "./Components/idMaker";
 
 export const initialState = {
-  basket: [],
+  basket: localStorage.getItem("favorites")
+    ? JSON.parse(localStorage.getItem("favorites"))
+    : [],
 };
 
 function reducer(state = initialState, action) {

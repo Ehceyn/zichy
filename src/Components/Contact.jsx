@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./contactFavs.css";
 import { useStateValue } from "../StateProvider";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -43,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Contact(props) {
   const classes = useStyles();
   const [{ basket }] = useStateValue();
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(basket));
+  }, [basket]);
 
   return (
     <div className={props.containerClass}>

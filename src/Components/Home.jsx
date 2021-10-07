@@ -81,7 +81,6 @@ function Home() {
         />
         <About />
       </section>
-
       <section className="contact" id="contact">
         <Title
           divClassName="section-title-div left-section-title"

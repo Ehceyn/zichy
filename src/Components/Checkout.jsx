@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Checkout.css";
 import { useStateValue } from "../StateProvider";
 import CheckoutFavs from "./CheckoutFavs";
@@ -11,6 +11,10 @@ function Checkout(props) {
   const [{ basket }] = useStateValue();
   const [toggl, setToggl] = useState(false);
   const [contactDiv, setContactDiv] = useState();
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(basket));
+  }, [basket]);
 
   function displayContactDiv() {
     setContactDiv(

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Favorite, RemoveRedEye } from "@material-ui/icons";
 import { useStateValue } from "../StateProvider";
@@ -7,6 +7,10 @@ import idMaker from "./idMaker";
 function Works(props) {
   const [toggl, setToggl] = useState(false);
   const [icon, setIcon] = useState(<FavoriteBorderIcon />);
+
+  // useEffect(() => {
+  //   setToggl(localStorage.setItem("toggl" + props.id, !toggl));
+  // }, [toggl]);
 
   function handleClick() {
     setToggl(!toggl);
@@ -20,6 +24,8 @@ function Works(props) {
         />
       );
       removeFromBasket();
+
+      // localStorage.setItem("toggl" + props.id, toggl);
     }
   }
   const [{}, dispatch] = useStateValue();
@@ -33,8 +39,6 @@ function Works(props) {
         category: props.category,
       },
     });
-    // localStorage.setItem(`${props.id}`, JSON.stringify(dispatch));
-    // console.log(dispatch);
   };
   const removeFromBasket = () => {
     // passes the id to the reducer to remove the id from basket and return the state and the remaining basket items
