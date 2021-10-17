@@ -12,10 +12,20 @@ import Contact from "./Contact";
 import Footer from "./Footer";
 import SeeMoreBtn from "./SeeMoreBtn";
 import Filter from "./Filter";
-import Checkout from "./Checkout";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import { Favorite, RemoveRedEye } from "@material-ui/icons";
+import { useStateValue } from "../StateProvider";
 
 function Home() {
   const [allWorks, setWorks] = useState(data);
+  const [favorites, setFavorites] = useState([]);
+  const getArray = JSON.parse(localStorage.getItem("favs") || "0");
+
+  useEffect(() => {
+    if (getArray !== 0) {
+      setFavorites([...getArray]);
+    }
+  }, []);
 
   function filterWork(e) {
     console.log(e.target.value);
@@ -27,6 +37,44 @@ function Home() {
       console.log(allWorks);
     }
   }
+
+  const addFav = (props) => {
+    let array = favorites;
+    let addArray = true;
+    array.forEach((item, key) => {
+      if (item === props.id) {
+        array.splice(key, 1);
+        addArray = false;
+      }
+    });
+    if (addArray) {
+      array.push(props.id);
+    }
+    setFavorites([...array]);
+    localStorage.setItem("favs", JSON.stringify(favorites));
+    console.log(favorites);
+  };
+
+  const [{}, dispatch] = useStateValue();
+
+  const addToBasket = (props) => {
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: {
+        id: props.id,
+        img: props.img,
+        category: props.category,
+      },
+    });
+  };
+  const removeFromBasket = (props) => {
+    // passes the id to the reducer to remove the id from basket and return the state and the remaining basket items
+
+    dispatch({
+      type: "REMOVE_FROM_BASKET",
+      id: props.id,
+    });
+  };
 
   return (
     <div>
@@ -57,12 +105,44 @@ function Home() {
         <div className="works-gallery">
           {allWorks.map((work, index) => {
             return (
-              <Works
-                key={work.id}
-                id={work.id}
-                img={work.img}
-                category={work.category}
-              />
+              <div className="works-div">
+                <div
+                // onClick={() => {
+                //   props.viewThisProject(props.id);
+                // }}
+                >
+                  <img src={work.img} alt="" className="works-img" />
+                  <div className="overlay">
+                    <RemoveRedEye titleAccess="VIEW PROJECT" />
+                  </div>
+                </div>
+
+                <article className="work-info">
+                  <div className="category-div">
+                    <p>{work.category}</p>
+                    <div></div>
+                  </div>
+                  {favorites.includes(work.id) ? (
+                    <div className="fav-btn btns">
+                      <Favorite
+                        onClick={() => {
+                          removeFromBasket(work);
+                          addFav(work);
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <div className="fav-btn btns">
+                      <FavoriteBorderIcon
+                        onClick={() => {
+                          addToBasket(work);
+                          addFav(work);
+                        }}
+                      />
+                    </div>
+                  )}
+                </article>
+              </div>
             );
           })}
         </div>

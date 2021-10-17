@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./Checkout.css";
+import "./favorite.css";
 import { useStateValue } from "../StateProvider";
-import CheckoutFavs from "./CheckoutFavs";
+import FavoriteWork from "./FavoriteWork";
 import MyFavNavbar from "./MyFavNavbar";
 import idMaker from "./idMaker";
 import work3 from "../utilities/zichygraphs/butterfly.jpg";
@@ -9,7 +9,6 @@ import Contact from "./Contact";
 
 function Checkout(props) {
   const [{ basket }] = useStateValue();
-  const [toggl, setToggl] = useState(false);
   const [contactDiv, setContactDiv] = useState();
 
   useEffect(() => {
@@ -46,8 +45,8 @@ function Checkout(props) {
             <div>
               <h2>Your Favorites Section Is Empty</h2>
               <p>
-                You have no items in your basket. To add one or more favorite
-                work(s) simply click on the 'heart' icon next to the item{" "}
+                You have no favorite. To add one or more favorite work(s) simply
+                click on the 'heart' icon next to the item{" "}
               </p>
             </div>
           ) : (
@@ -58,7 +57,7 @@ function Checkout(props) {
               <div className="works">
                 {basket.map((work, index) => {
                   return (
-                    <CheckoutFavs
+                    <FavoriteWork
                       key={work.id}
                       id={work.id}
                       img={work.img}
