@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import NavbarFixed from "./NavbarFixed";
 import data from "./data";
 import filter from "./filterstore";
-import Works from "./Works";
 import Title from "./Title";
-import Navbar from "./Navbar";
 
 import About from "./About";
 import Contact from "./Contact";
@@ -78,7 +75,6 @@ function Home() {
 
   return (
     <div>
-      {/* <Navbar /> */}
       <Header id="home" />
       <section className="works" id="works">
         <Title
@@ -123,22 +119,24 @@ function Home() {
                     <div></div>
                   </div>
                   {favorites.includes(work.id) ? (
-                    <div className="fav-btn btns">
-                      <Favorite
-                        onClick={() => {
-                          removeFromBasket(work);
-                          addFav(work);
-                        }}
-                      />
+                    <div
+                      className="fav-btn btns"
+                      onClick={() => {
+                        removeFromBasket(work);
+                        addFav(work);
+                      }}
+                    >
+                      <Favorite />
                     </div>
                   ) : (
-                    <div className="fav-btn btns">
-                      <FavoriteBorderIcon
-                        onClick={() => {
-                          addToBasket(work);
-                          addFav(work);
-                        }}
-                      />
+                    <div
+                      className="fav-btn btns"
+                      onClick={() => {
+                        addToBasket(work);
+                        addFav(work);
+                      }}
+                    >
+                      <FavoriteBorderIcon />
                     </div>
                   )}
                 </article>

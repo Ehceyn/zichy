@@ -53,7 +53,7 @@
 
 .checkout-contactDiv {
   position: fixed;
-  z-index: 7;
+  z-index: 1000;
 
   background: #cdcfcdde;
   height: 100vh;

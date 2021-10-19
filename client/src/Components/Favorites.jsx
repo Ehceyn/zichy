@@ -11,9 +11,63 @@ function Checkout(props) {
   const [{ basket }] = useStateValue();
   const [contactDiv, setContactDiv] = useState();
 
+  const [favorites, setFavorites] = useState([]);
+  const getArray = JSON.parse(localStorage.getItem("favs") || "0");
+
+  const [nav, setNav] = useState({
+    navPosition: "static",
+    navBorder: "1px solid lightgray",
+    navPaddingRight: "88px",
+  });
+
   useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(basket));
-  }, [basket]);
+    ["scroll", "resize", "load"].forEach((e) =>
+      window.addEventListener(e, handleScroll)
+    );
+    return () =>
+      ["scroll", "resize", "load"].forEach((e) =>
+        window.removeEventListener(e, handleScroll)
+      );
+  }, []);
+
+  function handleScroll() {
+    if (window.scrollY > 10) {
+      setNav({
+        navPosition: "fixed",
+        navBorder: "none",
+        navPaddingRight: "70px",
+      });
+    } else {
+      setNav({
+        navPosition: "static",
+        navBorder: "1px solid lightgray",
+        navPaddingRight: "88px",
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (getArray !== 0) {
+      setFavorites([...getArray]);
+    }
+  }, []);
+
+  const addFav = (id) => {
+    let array = favorites;
+    let addArray = true;
+    array.forEach((item, key) => {
+      if (item === id) {
+        array.splice(key, 1);
+        addArray = false;
+      }
+    });
+    if (addArray) {
+      array.push(id);
+    }
+    setFavorites([...array]);
+    localStorage.setItem("favs", JSON.stringify(favorites));
+    console.log(favorites);
+  };
 
   function displayContactDiv() {
     setContactDiv(
@@ -32,7 +86,12 @@ function Checkout(props) {
 
   return (
     <>
-      <MyFavNavbar onDisplayContactDiv={displayContactDiv} />
+      <MyFavNavbar
+        onDisplayContactDiv={displayContactDiv}
+        position={nav.navPosition}
+        border={nav.navBorder}
+        paddingRight={nav.navPaddingRight}
+      />
       <div className="main-contactDiv-body">{contactDiv} </div>
 
       <div className="checkout">
@@ -62,6 +121,7 @@ function Checkout(props) {
                       id={work.id}
                       img={work.img}
                       category={work.category}
+                      onRemoveFav={addFav}
                     />
                   );
                 })}

@@ -1,20 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-scroll";
-import zichygraphs from "../../src/utilities/zichygraphs/zichygraphs.png";
 import Buttons from "./Buttons";
 import { useStateValue } from "../StateProvider";
 import { Link as RouterLink } from "react-router-dom";
 import { Favorite } from "@material-ui/icons";
 
-function Navbar() {
+function Navbar(props) {
   const [{ basket }] = useStateValue();
   console.log(basket);
 
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(basket));
+  }, [basket]);
+
   return (
-    <div className="navbar">
-      <div className="logo-div">
-        <img src={zichygraphs} alt="" className="logo" draggable="false" />
-      </div>
+    <div className={props.navContainer}>
+      <div className="logo-div">{props.navLogo}</div>
       <ul className="nav-links">
         <li>
           <Link
@@ -36,7 +37,7 @@ function Navbar() {
             to="works"
             spy={true}
             smooth={true}
-            offset={0}
+            offset={-30}
             duration={500}
           >
             <p className="link" href="#works">
@@ -50,7 +51,7 @@ function Navbar() {
             to="about"
             spy={true}
             smooth={true}
-            offset={0}
+            offset={-30}
             duration={500}
           >
             <p className="link" href="#about">
@@ -64,7 +65,7 @@ function Navbar() {
             to="contact"
             spy={true}
             smooth={true}
-            offset={0}
+            offset={-30}
             duration={500}
           >
             <p className="link" href="#contact">

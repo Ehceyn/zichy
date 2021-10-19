@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./contactFavs.css";
 import { useStateValue } from "../StateProvider";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -44,9 +44,55 @@ export default function Contact(props) {
   const classes = useStyles();
   const [{ basket }] = useStateValue();
 
+  const [formValue, setFormValue] = useState({
+    fullname: "",
+    title: "",
+    email: "",
+    message: "",
+    phone: "",
+  });
+
+  const [favorites, setFavorites] = useState([]);
+  const getArray = JSON.parse(localStorage.getItem("favs") || "0");
+
+  useEffect(() => {
+    if (getArray !== 0) {
+      setFavorites([...getArray]);
+    }
+  }, []);
+
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(basket));
   }, [basket]);
+
+  const addFav = (id) => {
+    let array = favorites;
+    let addArray = true;
+    array.forEach((item, key) => {
+      if (item === id) {
+        array.splice(key, 1);
+        addArray = false;
+      }
+    });
+    if (addArray) {
+      array.push(id);
+    }
+    setFavorites([...array]);
+    localStorage.setItem("favs", JSON.stringify(favorites));
+    console.log(favorites);
+  };
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setFormValue((prevNote) => {
+      return {
+        ...prevNote,
+        [name]: value,
+      };
+    });
+    console.log(formValue);
+  }
 
   return (
     <div className={props.containerClass}>
@@ -91,7 +137,12 @@ export default function Contact(props) {
             >
               {basket.map((work, index) => {
                 return (
-                  <ContactFavs key={work.id} id={work.id} img={work.img} />
+                  <ContactFavs
+                    key={work.id}
+                    id={work.id}
+                    img={work.img}
+                    onRemoveFav={addFav}
+                  />
                 );
               })}
             </Container>
@@ -100,23 +151,35 @@ export default function Contact(props) {
               id="standard-basic"
               label="Fullname"
               className={classes.textField}
+              name="fullname"
+              value={formValue.fullname}
+              onChange={handleChange}
             />
             <CssTextField
               id="standard-basic"
               label="Title"
               className={classes.textField}
+              value={formValue.title}
+              onChange={handleChange}
+              name="title"
             />
             <CssTextField
               required
               id="standard-basic"
               label="E-mail"
               className={classes.textField}
+              value={formValue.email}
+              onChange={handleChange}
+              name="email"
             />
             <CssTextField
               required
               id="standard-basic"
               label="Phone no."
               className={classes.textField}
+              value={formValue.phone}
+              onChange={handleChange}
+              name="phone"
             />
             <CssTextField
               multiline
@@ -125,6 +188,8 @@ export default function Contact(props) {
               label="Message"
               fullWidth
               style={{ margin: 8 }}
+              value={formValue.message}
+              onChange={handleChange}
             />
             <Button className="btn btn-for-general btn-with-bg" value="Send" />
             {/* </ThemeProvider> */}
