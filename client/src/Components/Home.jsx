@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import data from "./data";
 import filter from "./filterstore";
 import Title from "./Title";
 
@@ -12,11 +11,38 @@ import Filter from "./Filter";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Favorite, RemoveRedEye } from "@material-ui/icons";
 import { useStateValue } from "../StateProvider";
+import axios from "axios";
 
 function Home() {
-  const [allWorks, setWorks] = useState(data);
+  const [works, setWorks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [serverError, setServerError] = useState(null);
+
   const [favorites, setFavorites] = useState([]);
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  function getUsers() {
+    // We're using axios to Fetch works
+    axios
+      // The API we're requesting data from
+      .get("http://localhost:5000/api/works")
+      // Once we get a response, we'll map the API endpoints to our props
+      .then((response) => {
+        setWorks(response.data);
+        setIsLoading(false);
+        console.log(response.data);
+      })
+      // We can still use the `.catch()` method since axios is promise-based
+      .catch((error) => {
+        setServerError(error);
+        setIsLoading(false);
+      });
+  }
+  console.log(works);
 
   useEffect(() => {
     if (getArray !== 0) {
@@ -27,11 +53,11 @@ function Home() {
   function filterWork(e) {
     console.log(e.target.value);
     if (e.target.value === "All") {
-      setWorks(data);
-      console.log(allWorks);
+      setWorks(works);
+      console.log(works);
     } else {
-      setWorks(data.filter((item) => item.category === e.target.value));
-      console.log(allWorks);
+      setWorks(works.filter((item) => item.category === e.target.value));
+      console.log(works);
     }
   }
 
@@ -39,13 +65,13 @@ function Home() {
     let array = favorites;
     let addArray = true;
     array.forEach((item, key) => {
-      if (item === props.id) {
+      if (item === props._id) {
         array.splice(key, 1);
         addArray = false;
       }
     });
     if (addArray) {
-      array.push(props.id);
+      array.push(props._id);
     }
     setFavorites([...array]);
     localStorage.setItem("favs", JSON.stringify(favorites));
@@ -58,7 +84,7 @@ function Home() {
     dispatch({
       type: "ADD_TO_BASKET",
       item: {
-        id: props.id,
+        id: props._id,
         img: props.img,
         category: props.category,
       },
@@ -69,7 +95,7 @@ function Home() {
 
     dispatch({
       type: "REMOVE_FROM_BASKET",
-      id: props.id,
+      id: props._id,
     });
   };
 
@@ -99,50 +125,58 @@ function Home() {
           </ul>
         </div>
         <div className="works-gallery">
-          {allWorks.map((work, index) => {
-            return (
-              <div className="works-div">
-                <div
-                // onClick={() => {
-                //   props.viewThisProject(props.id);
-                // }}
-                >
-                  <img src={work.img} alt="" className="works-img" />
-                  <div className="overlay">
-                    <RemoveRedEye titleAccess="VIEW PROJECT" />
+          {!isLoading ? (
+            works.map((work, index) => {
+              return (
+                <div className="works-div" key={work._id}>
+                  <div
+                  // onClick={() => {
+                  //   props.viewThisProject(props.id);
+                  // }}
+                  >
+                    <img
+                      src={"http://localhost:5000/" + work.img}
+                      alt=""
+                      className="works-img"
+                    />
+                    <div className="overlay">
+                      <RemoveRedEye titleAccess="VIEW PROJECT" />
+                    </div>
                   </div>
-                </div>
 
-                <article className="work-info">
-                  <div className="category-div">
-                    <p>{work.category}</p>
-                    <div></div>
-                  </div>
-                  {favorites.includes(work.id) ? (
-                    <div
-                      className="fav-btn btns"
-                      onClick={() => {
-                        removeFromBasket(work);
-                        addFav(work);
-                      }}
-                    >
-                      <Favorite />
+                  <article className="work-info">
+                    <div className="category-div">
+                      <p>{work.category}</p>
+                      <div></div>
                     </div>
-                  ) : (
-                    <div
-                      className="fav-btn btns"
-                      onClick={() => {
-                        addToBasket(work);
-                        addFav(work);
-                      }}
-                    >
-                      <FavoriteBorderIcon />
-                    </div>
-                  )}
-                </article>
-              </div>
-            );
-          })}
+                    {favorites.includes(work._id) ? (
+                      <div
+                        className="fav-btn btns"
+                        onClick={() => {
+                          removeFromBasket(work);
+                          addFav(work);
+                        }}
+                      >
+                        <Favorite />
+                      </div>
+                    ) : (
+                      <div
+                        className="fav-btn btns"
+                        onClick={() => {
+                          addToBasket(work);
+                          addFav(work);
+                        }}
+                      >
+                        <FavoriteBorderIcon />
+                      </div>
+                    )}
+                  </article>
+                </div>
+              );
+            })
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
       </section>
       <section>

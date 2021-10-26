@@ -29,7 +29,11 @@ function ContactFavs(props) {
         />
       </div>
 
-      <img src={props.img} alt="" className="contactFav-img" />
+      <img
+        src={"http://localhost:5000/" + props.img}
+        alt=""
+        className="contactFav-img"
+      />
     </div>
   );
 }

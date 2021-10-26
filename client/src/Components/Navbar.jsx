@@ -7,7 +7,6 @@ import { Favorite } from "@material-ui/icons";
 
 function Navbar(props) {
   const [{ basket }] = useStateValue();
-  console.log(basket);
 
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(basket));

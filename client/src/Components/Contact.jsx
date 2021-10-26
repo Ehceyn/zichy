@@ -61,10 +61,6 @@ export default function Contact(props) {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("favorites", JSON.stringify(basket));
-  }, [basket]);
-
   const addFav = (id) => {
     let array = favorites;
     let addArray = true;
@@ -85,14 +81,18 @@ export default function Contact(props) {
   function handleChange(event) {
     const { name, value } = event.target;
 
-    setFormValue((prevNote) => {
+    setFormValue((prevInputs) => {
       return {
-        ...prevNote,
+        ...prevInputs,
         [name]: value,
       };
     });
     console.log(formValue);
   }
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(basket));
+  }, [basket]);
 
   return (
     <div className={props.containerClass}>
@@ -190,6 +190,7 @@ export default function Contact(props) {
               style={{ margin: 8 }}
               value={formValue.message}
               onChange={handleChange}
+              name="message"
             />
             <Button className="btn btn-for-general btn-with-bg" value="Send" />
             {/* </ThemeProvider> */}
