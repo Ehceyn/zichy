@@ -6,11 +6,11 @@ import reducer, { initialState } from "./Reducer";
 import App from "./Components/App";
 
 ReactDOM.render(
-  <>
+  <React.Fragment>
     <StateProvider initialState={initialState} reducer={reducer}>
       <App />
     </StateProvider>
-  </>,
+  </React.Fragment>,
   document.getElementById("root")
 );
 

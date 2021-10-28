@@ -13,11 +13,11 @@ function Header(props) {
   });
 
   useEffect(() => {
-    ["scroll", "resize", "load"].forEach((e) =>
+    ["scroll", "resize", "loadeddata", "change"].forEach((e) =>
       window.addEventListener(e, handleScroll)
     );
     return () =>
-      ["scroll", "resize", "load"].forEach((e) =>
+      ["scroll", "resize", "loadeddata", "change"].forEach((e) =>
         window.removeEventListener(e, handleScroll)
       );
   }, []);

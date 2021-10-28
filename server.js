@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+require("dotenv").config();
 
 const works = require("./routes/api/works");
 
@@ -12,11 +13,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // DB config
-const db = require("./config/keys").mongoURI;
+// const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose
-  .connect(db)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 

@@ -14,14 +14,7 @@ function MyFavNavbar(props) {
 
   return (
     <div>
-      <div
-        className="navbarfixed"
-        style={{
-          position: `${props.position}`,
-          borderBottom: `${props.border}`,
-          paddingRight: `${props.paddingRight}`,
-        }}
-      >
+      <div className="navbarfixed">
         <div className="logo-div">ZICHYgraphs</div>
         <ul className="nav-links nav-links-fav">
           <RouterLink to="/">

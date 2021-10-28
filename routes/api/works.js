@@ -1,7 +1,26 @@
 const express = require("express");
 const router = express.Router();
-
 const multer = require("multer");
+const dotenv = require("dotenv");
+const { cloudinary } = require("../../utils/cloudinary");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+const cloudinaryStorage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "works",
+    allowedFormats: ["jpg", "png"],
+    transformation: [
+      {
+        height: 320,
+        width: 250,
+        crop: "scale",
+        quality: 60,
+        fetch_format: "auto",
+      },
+    ],
+  },
+});
 
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -20,8 +39,9 @@ const fileFilter = (req, file, callback) => {
 };
 
 const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1024 * 1024 * 7 },
+  storage: cloudinaryStorage,
+  dest: storage,
+  limits: { fileSize: 1024 * 1024 * 3 },
   fileFilter: fileFilter,
 });
 

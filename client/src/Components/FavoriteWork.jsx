@@ -50,11 +50,7 @@ function CheckoutFavs(props) {
           props.viewThisProject(props.id);
         }}
       >
-        <img
-          src={"http://localhost:5000/" + props.img}
-          alt=""
-          className="works-img"
-        />
+        <img src={props.img} alt="" className="works-img" />
         <div className="overlay">
           <RemoveRedEye titleAccess="VIEW PROJECT" />
         </div>

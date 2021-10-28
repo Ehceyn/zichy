@@ -16,7 +16,7 @@ import axios from "axios";
 function Home() {
   const [works, setWorks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [serverError, setServerError] = useState(null);
+  const [error, setError] = useState(null);
 
   const [favorites, setFavorites] = useState([]);
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
@@ -34,11 +34,13 @@ function Home() {
       .then((response) => {
         setWorks(response.data);
         setIsLoading(false);
+
         console.log(response.data);
       })
       // We can still use the `.catch()` method since axios is promise-based
       .catch((error) => {
-        setServerError(error);
+        setWorks(works);
+        setError(error);
         setIsLoading(false);
       });
   }
@@ -54,6 +56,7 @@ function Home() {
     console.log(e.target.value);
     if (e.target.value === "All") {
       setWorks(works);
+
       console.log(works);
     } else {
       setWorks(works.filter((item) => item.category === e.target.value));
@@ -134,11 +137,7 @@ function Home() {
                   //   props.viewThisProject(props.id);
                   // }}
                   >
-                    <img
-                      src={"http://localhost:5000/" + work.img}
-                      alt=""
-                      className="works-img"
-                    />
+                    <img src={work.img} alt="" className="works-img" />
                     <div className="overlay">
                       <RemoveRedEye titleAccess="VIEW PROJECT" />
                     </div>

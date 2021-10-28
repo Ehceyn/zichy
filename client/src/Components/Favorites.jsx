@@ -86,12 +86,7 @@ function Checkout(props) {
 
   return (
     <>
-      <MyFavNavbar
-        onDisplayContactDiv={displayContactDiv}
-        position={nav.navPosition}
-        border={nav.navBorder}
-        paddingRight={nav.navPaddingRight}
-      />
+      <MyFavNavbar onDisplayContactDiv={displayContactDiv} />
       <div className="main-contactDiv-body">{contactDiv} </div>
 
       <div className="checkout">
