@@ -19,7 +19,8 @@
     "react-social-icons": "^5.2.0",
     "styled-components": "^5.3.3",
     "web-vitals": "^1.1.1",
-    "yarn": "^1.22.17"
+    "yarn": "^1.22.17",
+    "zichygraphs": "file:.."
   },
   "scripts": {
     "start": "react-scripts start",
