@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Header2 from "./Header2";
 import Header from "./Header";
 import filter from "./filterstore";
 import Title from "./Title";
@@ -17,10 +18,16 @@ function Home() {
   const [works, setWorks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [favorites, setFavorites] = useState([]);
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
 
+  //Get items from loclstorage
+  useEffect(() => {
+    if (getArray !== 0) {
+      setFavorites([...getArray]);
+    }
+  }, []);
+  // Call Api
   useEffect(() => {
     getUsers();
   }, []);
@@ -46,24 +53,19 @@ function Home() {
   }
   console.log(works);
 
-  useEffect(() => {
-    if (getArray !== 0) {
-      setFavorites([...getArray]);
-    }
-  }, []);
-
   function filterWork(e) {
     console.log(e.target.value);
     if (e.target.value === "All") {
-      setWorks(works);
+      setWorks();
 
       console.log(works);
     } else {
-      setWorks(works.filter((item) => item.category === e.target.value));
+      setWorks();
       console.log(works);
     }
   }
 
+  // Toggle function that Adds and removes work stored in the localstorage as favs
   const addFav = (props) => {
     let array = favorites;
     let addArray = true;
@@ -82,7 +84,6 @@ function Home() {
   };
 
   const [{}, dispatch] = useStateValue();
-
   const addToBasket = (props) => {
     dispatch({
       type: "ADD_TO_BASKET",
@@ -111,8 +112,6 @@ function Home() {
           divNameAttr="works"
           title="works"
           pName="WORKS"
-          upLinePosition="line-left"
-          downLinePosition="line-right"
         />
         <div className="filter">
           <ul className="filter-btn">
@@ -187,8 +186,6 @@ function Home() {
           divNameAttr="about"
           title="about"
           pName="ABOUT"
-          upLinePosition="line-right"
-          downLinePosition="line-left"
         />
         <About />
       </section>
@@ -198,8 +195,6 @@ function Home() {
           divNameAttr="contact"
           title="contact"
           pName="CONTACT"
-          upLinePosition="line-left"
-          downLinePosition="line-right"
         />
         <Contact
           containerClass="contact-container"

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
+import { useStateValue } from "../StateProvider";
 import { Close, Favorite, Menu } from "@material-ui/icons";
 import Buttons from "./Buttons";
 import { SocialIcon } from "react-social-icons";
@@ -20,22 +22,28 @@ function HamburgerMenu() {
     color: "black",
   };
   const hideNav = {
-    display: "none",
+    height: "0px",
   };
   const showNav = {
-    display: "flex",
+    height: "92vh",
   };
 
+  const [{ basket }] = useStateValue();
   const [toggl, setToggl] = useState(false);
   const [navStyle, setNavStyle] = useState(normalStyle);
 
-  window.onscroll = !toggl && handleScrol;
+  useEffect(() => {
+    ["load", "scroll", "resize", "change"].forEach((e) =>
+      window.addEventListener(e, handleScrol)
+    );
+    return () =>
+      ["load", "scroll", "resize", "change"].forEach((e) =>
+        window.removeEventListener(e, handleScrol)
+      );
+  }, []);
 
   function handleScrol() {
-    if (
-      window.document.body.scrollTop >= 70 ||
-      window.document.documentElement.scrollTop >= 70
-    ) {
+    if (window.scrollY >= 70) {
       setNavStyle(onscrollStyle);
     } else {
       setNavStyle(normalStyle);
@@ -56,17 +64,35 @@ function HamburgerMenu() {
     <div>
       <div className="hamburger">
         <div className="ham-logo-div" style={navStyle}>
-          <Link
-            activeClass="active"
-            to="my fav"
-            spy={true}
-            smooth={true}
-            offset={0}
-            duration={5}
-          >
-            <Favorite />
-          </Link>
-
+          <RouterLink to="/myfav">
+            <div style={{ position: "relative" }}>
+              <Favorite
+                className="toggleBtn"
+                style={{ color: `${window.scrollY >= 70 ? "black" : "white"}` }}
+              />
+              <p
+                style={{
+                  backgroundColor: `${
+                    window.scrollY >= 70 ? "white" : "black"
+                  }`,
+                  color: `${window.scrollY >= 70 ? "black" : "white"}`,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "0.4em",
+                  position: "absolute",
+                  height: "14px",
+                  width: "14px",
+                  borderRadius: "50%",
+                  left: "14px",
+                  bottom: "5px",
+                  transition: "all 0.3s ease-in",
+                }}
+              >
+                {basket?.length}
+              </p>
+            </div>
+          </RouterLink>
           <Link
             activeClass="active"
             to="home"
@@ -77,8 +103,18 @@ function HamburgerMenu() {
           >
             <div className="ham-logo">ZICHYgraphs</div>
           </Link>
-
-          <div onClick={handleClick}>{toggl ? <Close /> : <Menu />} </div>
+          <div
+            onClick={handleClick}
+            style={{
+              transition: "all 0.3s linear",
+            }}
+          >
+            {toggl ? (
+              <Close className="toggleBtn" />
+            ) : (
+              <Menu className="toggleBtn" />
+            )}{" "}
+          </div>
         </div>
 
         <div className="ham-div" style={toggl ? showNav : hideNav}>
@@ -149,20 +185,20 @@ function HamburgerMenu() {
           <article>
             <SocialIcon
               url="https://facebook.com/chimeruzee.chidum"
-              bgColor="blue"
-              fgColor="white"
+              bgColor="#cca"
+              fgColor="00ACEF"
               className="social-icon"
             />
             <SocialIcon
               url="https://twitter.com/chimeruzee1"
-              bgColor="#00ACEF"
-              fgColor="white"
+              bgColor="#cca"
+              fgColor="00ACEF"
               className="social-icon"
             />
             <SocialIcon
               url="https://instagram.com/chimeruzee.chidum"
-              bgColor="red"
-              fgColor="white"
+              bgColor="#cca"
+              fgColor="00ACEF"
               className="social-icon"
             />
           </article>

@@ -55,8 +55,40 @@ const Work = require("../../models/Work");
 router.get("/", (req, res) => {
   Work.find()
     .sort({ date: -1 })
+    .limit(8)
     .then((works) => res.json(works));
 });
+
+// @route  GET api/works/:catgory
+// @desc  Get Works By Category
+// @access  Public
+
+// router.get("/", (req, res) => {
+//   console.log(req.query);
+//   let category = req.query.category;
+//   if (Work[category]) {
+//     res.json(Work[category]);
+//   } else {
+//     res.json("Not found");
+//   }
+//   // const getWork = Work.find((c) => c.category === req.params.category);
+//   // if (!getWork) res.status(404).send("Doesnt exist");
+//   // res.send(getWork);
+// });
+
+// @route  GET api/works/category/:catgory
+// @desc  Get Works By Category
+// @access  Public
+//display all products in a specific Category
+// router.get("/:category", function (req, res, next) {
+//   Category.findOne({ category: req.params.category }, function (err, category) {
+//     if (err) return console.log(err);
+//     Product.find({ category: category }, function (err, works) {
+//       if (err) return console.log(err);
+//       res.status(200).json(works);
+//     });
+//   });
+// });
 
 // @route  POST api/works
 // @desc  Ceate A Work

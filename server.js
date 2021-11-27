@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const works = require("./routes/api/works");
@@ -11,9 +12,6 @@ app.use(cors());
 //express json parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// DB config
-// const db = require("./config/keys").mongoURI;
 
 // Connect to MongoDB
 mongoose

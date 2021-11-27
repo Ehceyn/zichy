@@ -8,13 +8,12 @@ function Title(props) {
       title={props.title}
       draggable="false"
     >
-      <div className={props.upLinePosition}>
-        <div className="underline"></div>
-      </div>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <p className="section-title">{props.pName}</p>
-      <div className={props.downLinePosition}>
-        {/* <div className="underline"></div> */}
+      <div>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+        <p className="section-title">{props.pName}</p>
+        <div className="underline">
+          <div>{/* <div><div className="underline"></div></div> */}</div>
+        </div>
       </div>
     </div>
   );

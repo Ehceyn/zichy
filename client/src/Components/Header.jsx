@@ -5,42 +5,51 @@ import Buttons from "./Buttons";
 import zichygraphs from "../../src/utilities/zichygraphs/zichygraphs.png";
 
 function Header(props) {
-  const [nav, setNav] = useState({
-    navLogo: (
-      <img src={zichygraphs} alt="" className="logo" draggable="false" />
-    ),
-    navContainer: "navbar",
-  });
+  const [nav, setNav] = useState(
+    <Navbar
+      navLogo={
+        <img src={zichygraphs} alt="" className="logo" draggable="false" />
+      }
+      navContainer="navbar"
+    />
+  );
 
   useEffect(() => {
-    ["scroll", "resize", "loadeddata", "change"].forEach((e) =>
+    ["load", "scroll", "resize", "change"].forEach((e) =>
       window.addEventListener(e, handleScroll)
     );
     return () =>
-      ["scroll", "resize", "loadeddata", "change"].forEach((e) =>
+      ["load", "scroll", "resize", "change"].forEach((e) =>
         window.removeEventListener(e, handleScroll)
       );
   }, []);
 
   function handleScroll() {
     if (window.scrollY > 140) {
-      setNav({
-        navLogo: "ZICHYgraphs",
-        navContainer: "navbarfixed",
-      });
+      if (window.matchMedia("(max-width:800px)").matches) {
+        setNav(<HamburgerMenu />);
+      } else {
+        setNav(<Navbar navLogo="ZICHYgraghs" navContainer="navbarfixed" />);
+      }
+    } else if (window.matchMedia("(max-width:800px)").matches) {
+      setNav(<HamburgerMenu />);
     } else {
-      setNav({
-        navLogo: (
-          <img src={zichygraphs} alt="" className="logo" draggable="false" />
-        ),
-        navContainer: "navbar",
-      });
+      setNav(
+        <Navbar
+          navLogo={
+            <img src={zichygraphs} alt="" className="logo" draggable="false" />
+          }
+          navContainer="navbar"
+        />
+      );
     }
   }
 
   return (
     <header>
-      <Navbar navContainer={nav.navContainer} navLogo={nav.navLogo} />
+      {/* <Navbar navContainer={nav.navContainer} navLogo={nav.navLogo} /> */}
+      {nav}
+      {/* <HamburgerMenu /> */}
       {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       <a name="home">
         <div className="intro">

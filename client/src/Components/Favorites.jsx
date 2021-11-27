@@ -3,6 +3,8 @@ import "./favorite.css";
 import { useStateValue } from "../StateProvider";
 import FavoriteWork from "./FavoriteWork";
 import MyFavNavbar from "./MyFavNavbar";
+import Navbar from "./Navbar";
+
 import idMaker from "./idMaker";
 import work3 from "../utilities/zichygraphs/butterfly.jpg";
 import Contact from "./Contact";
