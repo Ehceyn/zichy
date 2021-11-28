@@ -251,7 +251,7 @@ header .intro p .intro-span {
   z-index: 5;
   box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.1);
   padding-right: 70px;
-  transition: background 0.3s linear;
+  transition: background 0.2s linear;
 }
 
 .navbarfixed .logo-div {
@@ -618,6 +618,12 @@ footer > div {
     height: 80vh;
   }
 
+  header .intro p {
+    font-size: 3.2rem;
+    font-weight: bold;
+    line-height: 1.2em;
+  }
+
   /* Hamburger menu: some stylings are in 'HamburgerMenu.jsx' component */
   .hamburger {
     display: block;
@@ -625,19 +631,19 @@ footer > div {
     width: 100%;
     top: 0;
     z-index: 1000;
-    transition: all 0.3s ease-in;
+    transition: all 0.2s ease-in;
   }
 
   .hamburger .ham-logo-div {
     display: flex;
     width: 100vw;
-    height: 8vh;
+    height: 10vh;
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
     font-size: 2em;
 
-    transition: all 0.3s linear;
+    transition: all 0.2s linear;
   }
 
   .hamburger .ham-logo {
@@ -654,7 +660,7 @@ footer > div {
     width: 100%;
     height: 92vh;
     overflow-y: hidden;
-    transition: all 0.3s linear;
+    transition: all 0.2s linear;
   }
 
   .hamburger .toggleBtn {
@@ -850,15 +856,16 @@ footer > div {
   header .intro p {
     color: white;
     font-size: 2rem;
-    line-height: 2.5rem;
+    font-weight: bold;
+    line-height: 1.3em;
     margin-bottom: 40px;
   }
 
   /* HAMBURGER */
   .hamburger .ham-logo-div {
-    height: 5vh;
+    height: 48px;
     padding: 10px;
-    font-size: 1.1em;
+    font-size: 1.3em;
     transition: all 0.3s linear;
   }
 
@@ -867,7 +874,7 @@ footer > div {
   }
 
   .hamburger .toggleBtn {
-    font-size: 0.85em !important;
+    font-size: 1.1em !important;
   }
 
   /* FILTERS */

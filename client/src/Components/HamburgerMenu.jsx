@@ -20,6 +20,7 @@ function HamburgerMenu() {
   const onclickStyle = {
     backgroundColor: "white",
     color: "black",
+    borderBottom: "3px solid rgb(238, 238, 238)",
   };
   const hideNav = {
     height: "0px",
@@ -186,19 +187,19 @@ function HamburgerMenu() {
             <SocialIcon
               url="https://facebook.com/chimeruzee.chidum"
               bgColor="#cca"
-              fgColor="00ACEF"
+              fgColor="black"
               className="social-icon"
             />
             <SocialIcon
               url="https://twitter.com/chimeruzee1"
               bgColor="#cca"
-              fgColor="00ACEF"
+              fgColor="black"
               className="social-icon"
             />
             <SocialIcon
               url="https://instagram.com/chimeruzee.chidum"
               bgColor="#cca"
-              fgColor="00ACEF"
+              fgColor="black"
               className="social-icon"
             />
           </article>
