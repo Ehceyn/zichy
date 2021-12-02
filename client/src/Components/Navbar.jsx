@@ -91,10 +91,19 @@ function Navbar(props) {
             </RouterLink>
           </li>
           <li>
-            <Buttons
-              value="Hire me"
-              className="btn btn-for-general btn-with-bg"
-            />
+            <Link
+              activeClass="active"
+              to="contact"
+              spy={true}
+              smooth={true}
+              offset={-30}
+              duration={500}
+            >
+              <Buttons
+                value="Hire me"
+                className="btn btn-for-general btn-with-bg"
+              />
+            </Link>
           </li>
         </ul>
       </div>

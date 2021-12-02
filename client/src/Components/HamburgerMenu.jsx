@@ -6,7 +6,7 @@ import { Close, Favorite, Menu } from "@material-ui/icons";
 import Buttons from "./Buttons";
 import { SocialIcon } from "react-social-icons";
 
-function HamburgerMenu() {
+function HamburgerMenu(props) {
   const normalStyle = {
     backgroundColor: "transparent",
     color: "white",
@@ -110,11 +110,10 @@ function HamburgerMenu() {
               transition: "all 0.3s linear",
             }}
           >
-            {toggl ? (
-              <Close className="toggleBtn" />
-            ) : (
-              <Menu className="toggleBtn" />
-            )}{" "}
+            <RouterLink to="/home" style={{ color: "black" }}>
+              {props.homeIcon}
+            </RouterLink>
+            {toggl ? props.closeIcon : props.menuIcon}{" "}
           </div>
         </div>
 
@@ -186,26 +185,25 @@ function HamburgerMenu() {
           <article>
             <SocialIcon
               url="https://facebook.com/chimeruzee.chidum"
-              bgColor="#cca"
+              bgColor="#eee"
               fgColor="black"
               className="social-icon"
             />
             <SocialIcon
               url="https://twitter.com/chimeruzee1"
-              bgColor="#cca"
+              bgColor="#eee"
               fgColor="black"
               className="social-icon"
             />
             <SocialIcon
               url="https://instagram.com/chimeruzee.chidum"
-              bgColor="#cca"
+              bgColor="#eee"
               fgColor="black"
               className="social-icon"
             />
           </article>
         </div>
       </div>
-      );
     </div>
   );
 }

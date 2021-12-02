@@ -12,10 +12,11 @@ import Filter from "./Filter";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Favorite, RemoveRedEye } from "@material-ui/icons";
 import { useStateValue } from "../StateProvider";
-import axios from "axios";
+import { axiosInstance } from "../../../config/keys";
 
 function Home() {
   const [works, setWorks] = useState([]);
+  const [newFilter, setNewFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [favorites, setFavorites] = useState([]);
@@ -29,14 +30,14 @@ function Home() {
   }, []);
   // Call Api
   useEffect(() => {
-    getUsers();
-  }, []);
+    getWorks();
+  }, [filter]);
 
-  function getUsers() {
+  function getWorks() {
     // We're using axios to Fetch works
-    axios
+    axiosInstance
       // The API we're requesting data from
-      .get("http://localhost:5000/api/works")
+      .get(`/works?category=${newFilter}`)
       // Once we get a response, we'll map the API endpoints to our props
       .then((response) => {
         setWorks(response.data);
@@ -55,14 +56,9 @@ function Home() {
 
   function filterWork(e) {
     console.log(e.target.value);
-    if (e.target.value === "All") {
-      setWorks();
-
-      console.log(works);
-    } else {
-      setWorks();
-      console.log(works);
-    }
+    setNewFilter(e.target.value);
+    getWorks();
+    console.log(works);
   }
 
   // Toggle function that Adds and removes work stored in the localstorage as favs

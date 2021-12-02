@@ -3,11 +3,10 @@ import "./favorite.css";
 import { useStateValue } from "../StateProvider";
 import FavoriteWork from "./FavoriteWork";
 import MyFavNavbar from "./MyFavNavbar";
-import Navbar from "./Navbar";
-
-import idMaker from "./idMaker";
-import work3 from "../utilities/zichygraphs/butterfly.jpg";
+import FavoritesHamburger from "./FavoritesHamburger";
 import Contact from "./Contact";
+import { Home } from "@material-ui/icons";
+import Buttons from "./Buttons";
 
 function Checkout(props) {
   const [{ basket }] = useStateValue();
@@ -16,11 +15,7 @@ function Checkout(props) {
   const [favorites, setFavorites] = useState([]);
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
 
-  const [nav, setNav] = useState({
-    navPosition: "static",
-    navBorder: "1px solid lightgray",
-    navPaddingRight: "88px",
-  });
+  const [nav, setNav] = useState(<FavoritesHamburger />);
 
   useEffect(() => {
     ["scroll", "resize", "load"].forEach((e) =>
@@ -33,18 +28,10 @@ function Checkout(props) {
   }, []);
 
   function handleScroll() {
-    if (window.scrollY > 10) {
-      setNav({
-        navPosition: "fixed",
-        navBorder: "none",
-        navPaddingRight: "70px",
-      });
+    if (window.matchMedia("(max-width:800px)").matches) {
+      setNav(<FavoritesHamburger />);
     } else {
-      setNav({
-        navPosition: "static",
-        navBorder: "1px solid lightgray",
-        navPaddingRight: "88px",
-      });
+      setNav(<MyFavNavbar onDisplayContactDiv={displayContactDiv} />);
     }
   }
 
@@ -88,7 +75,7 @@ function Checkout(props) {
 
   return (
     <>
-      <MyFavNavbar onDisplayContactDiv={displayContactDiv} />
+      {nav}
       <div className="main-contactDiv-body">{contactDiv} </div>
 
       <div className="checkout">
@@ -122,6 +109,14 @@ function Checkout(props) {
                     />
                   );
                 })}
+              </div>
+              <div style={{ marginTop: "20px" }}>
+                <li onClick={displayContactDiv}>
+                  <Buttons
+                    value="Hire me"
+                    className="btn btn-for-favorites btn-with-bg"
+                  />
+                </li>
               </div>
             </div>
           )}

@@ -6,10 +6,10 @@ function About() {
     <div className="about-div">
       <article className="about-paragraph-div">
         <p className="about-paragraph">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
-          doloribus harum eos numquam perferendis facere necessitatibus amet,
-          officia tempore dolorem dolorum aliquid nam odit placeat voluptatem
-          iusto nostrum aliquam totam! <br />
+          I am <span className="intro-span">Chimzichim Chidum</span> consectetur
+          adipisicing elit. Ipsa doloribus harum eos numquam perferendis facere
+          necessitatibus amet, officia tempore dolorem dolorum aliquid nam odit
+          placeat voluptatem iusto nostrum aliquam totam! <br />
           <br />
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
           doloribus harum eos numquam perferendis facere necessitatibus amet,

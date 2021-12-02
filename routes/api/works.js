@@ -52,29 +52,38 @@ const Work = require("../../models/Work");
 // @desc  Get All Works
 // @access  Public
 
-router.get("/", (req, res) => {
-  Work.find()
-    .sort({ date: -1 })
-    .limit(8)
-    .then((works) => res.json(works));
-});
+// router.get("/", (req, res) => {
+//   Work.find()
+//     .sort({ date: -1 })
+//     .limit(8)
+//     .then((works) => res.json(works));
+// });
 
 // @route  GET api/works/:catgory
 // @desc  Get Works By Category
 // @access  Public
 
-// router.get("/", (req, res) => {
-//   console.log(req.query);
-//   let category = req.query.category;
-//   if (Work[category]) {
-//     res.json(Work[category]);
-//   } else {
-//     res.json("Not found");
-//   }
-//   // const getWork = Work.find((c) => c.category === req.params.category);
-//   // if (!getWork) res.status(404).send("Doesnt exist");
-//   // res.send(getWork);
-// });
+//GET ALL PRODUCTS
+router.get("/", async (req, res) => {
+  const qNew = req.query.new;
+  const qCategory = req.query.category;
+  try {
+    let works;
+    if (qCategory) {
+      works = await Work.find({
+        category: {
+          $in: [qCategory],
+        },
+      });
+    } else {
+      works = Work.find().sort({ date: -1 }).limit(10);
+    }
+
+    res.status(200).json(works);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // @route  GET api/works/category/:catgory
 // @desc  Get Works By Category

@@ -237,7 +237,6 @@ export default function Contact(props) {
             noValidate
             autoComplete="off"
           >
-            {/* <ThemeProvider theme={theme}> */}
             <Container
               id="standard-basic"
               label="I will like to get something like this/these"

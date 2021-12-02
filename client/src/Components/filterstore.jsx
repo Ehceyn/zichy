@@ -15,8 +15,9 @@ const filter = [
     id: 4,
     category: "Flyers",
   },
+
   {
-    id: 5,
+    id: 6,
     category: "Posters",
   },
 ];

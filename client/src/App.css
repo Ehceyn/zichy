@@ -18,6 +18,7 @@
   text-decoration: none;
   font-family: Lato, "Segoe UI", sans-serif;
   box-sizing: border-box;
+  list-style: none;
 }
 html,
 body,
@@ -30,6 +31,24 @@ body {
   background-color: white;
   overflow-x: hidden;
   line-height: 1;
+  scrollbar-color: rgba(0, 0, 0, 0.432) !important;
+}
+body::-webkit-scrollbar {
+  height: 0 !important;
+}
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.151) !important;
+  box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.151) !important;
+  background: rgba(231, 229, 229, 0.589) !important;
+}
+body::-webkit-scrollbar-thumb {
+  background: rgba(189, 188, 188, 0.774) !important;
+  border-radius: 10px !important;
+  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0) !important;
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+body::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0, 0, 0, 0) !important;
 }
 .container {
   /* position: relative; */
@@ -104,6 +123,9 @@ Headers color      :      #1dbf73
   background-color: #0b993a;
   color: white;
 }
+.btn-for-favorites {
+  display: none;
+}
 .see-more-btn {
   display: flex;
   justify-content: center;
@@ -145,7 +167,7 @@ img {
 
 /* ==== HAMBURGER SECTION === */
 .hamburger {
-  display: block;
+  display: none;
 }
 
 /* ================================= HEADER SECTION ================================ */
@@ -175,8 +197,36 @@ header .intro p {
   font-weight: 300;
 }
 
-header .intro p .intro-span {
+.intro-span {
   color: #0fd952;
+  font-weight: bolder;
+}
+
+.animated-arrow-div {
+  width: 100vw;
+  background-color: red;
+  height: 400px;
+  display: flex;
+  align-items: flex-end;
+}
+
+@keyframes go-to-works {
+  0% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 0.5;
+    transform: translateY(2px);
+  }
+  50% {
+    opacity: 0.75;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(8px);
+  }
 }
 
 /* ================================= NAVBAR SECTION ================================ */
@@ -332,7 +382,7 @@ header .intro p .intro-span {
 .filter-btn button {
   display: flex;
   border: none;
-  background: none !important;
+  background: none;
   align-items: center;
   height: 80px;
   font-size: 14px;
@@ -566,7 +616,7 @@ textarea {
   justify-content: center;
   align-items: center;
   width: 40vw;
-  height: 40vh;
+  height: fit-content;
   background: white;
   text-align: center;
   box-shadow: 0.1px 0.1px 10px rgba(3, 49, 18, 0.322);
@@ -582,7 +632,7 @@ textarea {
   cursor: pointer;
 }
 .messageBtn:active {
-  border: 5px solid rgba(93, 117, 224, 0.712);
+  background-color: rgba(93, 117, 224, 0.712);
 }
 
 /* ================================= FOOTER SECTION ================================ */
@@ -610,7 +660,13 @@ footer > div {
 
 
 ======================================================================================== */
-@media screen and (max-width: 800px) {
+@media all and (max-width: 800px) {
+  .btn-for-favorites {
+    font-size: 1em;
+    width: 100%;
+    height: 40px;
+  }
+
   /* HEADER */
   header {
     display: flex;
@@ -622,8 +678,19 @@ footer > div {
     font-size: 3.2rem;
     font-weight: bold;
     line-height: 1.2em;
+    height: fit-content;
   }
 
+  .btn:active,
+  li:active,
+  li:hover,
+  li:focus,
+  a:active,
+  a:focus,
+  a:hover {
+    background: none;
+    border: none;
+  }
   /* Hamburger menu: some stylings are in 'HamburgerMenu.jsx' component */
   .hamburger {
     display: block;
@@ -719,7 +786,7 @@ footer > div {
     display: flex;
     justify-content: center;
     background-color: none;
-    margin-top: 40px;
+    margin: 40px 0;
   }
 
   .underline {
@@ -739,11 +806,10 @@ footer > div {
   /* CONTACT */
   .contact-container2 {
     display: flex;
-    height: 45vh;
+    height: fit-content;
     width: 100vw;
     margin-bottom: 70px;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.575);
   }
 
   .contact-div {
@@ -760,13 +826,60 @@ footer > div {
     margin: 0;
     width: 100%;
   }
-
-  /* FILTER */
-  .filter {
+  .messageBox {
     display: flex;
     justify-content: center;
-    transform: none;
+    align-items: center;
+    width: 50vw;
+    padding: 30px;
+    height: fit-content;
+    background: white;
+    text-align: center;
+    box-shadow: 0.1px 0.1px 10px rgba(3, 49, 18, 0.322);
+  }
+
+  /* FILTERS */
+  .filter {
+    display: flex;
+    margin-top: 40px;
     width: 100%;
+    transform: translateY(0);
+    scrollbar-color: transparent transparent;
+  }
+  .filter::-webkit-scrollbar {
+    height: 0;
+  }
+  .filter::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  }
+  .filter::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0);
+    -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  }
+  .filter::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  .filter-btn {
+    padding: 0 5px;
+    background: white;
+    border-radius: none;
+    box-shadow: none;
+    width: 500px;
+  }
+  .filter-btn button {
+    border: 1px solid rgba(231, 229, 229, 0.795);
+    background: none;
+    height: 30px;
+    font-size: 0.8rem;
+    padding: 0 5px;
+    border-radius: 15px;
+  }
+  .filter-btn button:hover {
+    height: 30px;
+    border-bottom: none;
   }
 
   /* ABOUT */
@@ -775,7 +888,7 @@ footer > div {
     border-radius: 0;
     flex-wrap: wrap;
     width: 100vw;
-    height: 40vh;
+    height: fit-content;
     margin-bottom: 70px;
     background: none;
   }
@@ -812,8 +925,7 @@ footer > div {
     display: none;
   }
 }
-
-@media screen and (max-width: 400px) {
+@media all and (max-width: 425px) {
   /* BUTTONS */
   .btn {
     /* Specifies the properties of all buttons including header button */
@@ -839,7 +951,7 @@ footer > div {
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 80vh;
+    height: 100vh;
   }
   header .intro {
     background-color: rgba(0, 0, 0, 0.575);
@@ -851,7 +963,7 @@ footer > div {
     margin: 0;
     padding: 0 5px;
     width: 100%;
-    height: 80vh;
+    height: 100vh;
   }
   header .intro p {
     color: white;
@@ -879,24 +991,41 @@ footer > div {
 
   /* FILTERS */
   .filter {
-    display: none;
-    margin-top: 130px;
+    display: flex;
+    margin-top: 40px;
     width: 100%;
+    transform: translateY(0);
+    overflow-x: auto;
+    justify-content: none;
   }
   .filter-btn {
+    justify-content: none;
     padding: 0 5px;
+    background: white;
+    border-radius: none;
+    box-shadow: none;
+    width: 100%;
   }
   .filter-btn button {
-    border: none !important;
-    background: none !important;
-    height: 40px;
-    font-size: 0.6rem;
+    border: 1px solid rgba(231, 229, 229, 0.795);
+    background: none;
+    height: 30px;
+    max-width: 110px;
+    width: max-content;
+    font-size: 0.8rem;
+    padding: 0 5px;
+    border-radius: 15px;
+    margin-right: 4px;
+  }
+  .filter-btn button:hover {
+    height: 30px;
+    border-bottom: none;
   }
 
   /* WORKS */
   .works-gallery {
     padding: 0;
-    padding-top: 140px;
+    padding-top: 40px;
   }
 
   .works-div {
@@ -941,13 +1070,17 @@ footer > div {
     opacity: 0;
   }
 
+  .works-div .overlay {
+    display: none;
+  }
+
   /* ABOUT */
   .about-div {
     border: 0;
-    padding-top: 120px;
+    padding-top: 0;
     flex-wrap: wrap;
     width: 100%;
-    height: 40vh;
+    height: fit-content;
     margin-bottom: 70px;
   }
 
@@ -983,11 +1116,14 @@ footer > div {
   }
 
   /* CONTACT */
+
   .contact-div {
     display: none;
+    height: fit-content;
   }
   .contact-container {
     display: block;
+    height: fit-content;
   }
   .contact-bg-para p {
     display: none;
@@ -995,6 +1131,34 @@ footer > div {
   .contact-page {
     margin: 0;
     width: 100%;
+  }
+  .messageBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85vw;
+    height: fit-content;
+    padding: 30px;
+    background: white;
+    text-align: center;
+    box-shadow: 0.1px 0.1px 10px rgba(3, 49, 18, 0.322);
+  }
+  /* FOOTER */
+  footer {
+    width: 100%;
+    height: 70px;
+    margin: 0;
+    align-items: center;
+    display: flex;
+    border-top: 0.1px solid #9b9e9c;
+  }
+  footer > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 12.88px;
+    color: #9b9e9c;
   }
 }
 
