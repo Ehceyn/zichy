@@ -4,6 +4,7 @@ const multer = require("multer");
 const dotenv = require("dotenv");
 const { cloudinary } = require("../../utils/cloudinary");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const { calculateLimitAndOffset, paginate } = require("paginate-info");
 
 const cloudinaryStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
@@ -48,24 +49,12 @@ const upload = multer({
 // Item Model
 const Work = require("../../models/Work");
 
-// @route  GET api/works
-// @desc  Get All Works
-// @access  Public
-
-// router.get("/", (req, res) => {
-//   Work.find()
-//     .sort({ date: -1 })
-//     .limit(8)
-//     .then((works) => res.json(works));
-// });
-
 // @route  GET api/works/:catgory
 // @desc  Get Works By Category
 // @access  Public
 
 //GET ALL PRODUCTS
 router.get("/", async (req, res) => {
-  const qNew = req.query.new;
   const qCategory = req.query.category;
   try {
     let works;
@@ -76,7 +65,7 @@ router.get("/", async (req, res) => {
         },
       });
     } else {
-      works = Work.find().sort({ date: -1 }).limit(10);
+      works = Work.find().sort({ date: -1 }).limit(12);
     }
 
     res.status(200).json(works);
@@ -85,18 +74,33 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route  GET api/works/category/:catgory
-// @desc  Get Works By Category
-// @access  Public
-//display all products in a specific Category
-// router.get("/:category", function (req, res, next) {
-//   Category.findOne({ category: req.params.category }, function (err, category) {
-//     if (err) return console.log(err);
-//     Product.find({ category: category }, function (err, works) {
-//       if (err) return console.log(err);
-//       res.status(200).json(works);
-//     });
-//   });
+// /**
+//  * @function getAll
+//  * @param {Object} req request object
+//  * @param {Object} res response object
+//  * @returns {Object} response object
+//  * @description gets all available results
+//  */
+// router.get("/", async (req, res) => {
+//   // const qCategory = req.query.category;
+//   const {
+//     query: { category, currentPage, pageSize },
+//   } = req;
+//   try {
+//     const count = await Work.estimatedDocumentCount();
+//     const { limit, offset } = calculateLimitAndOffset(page, pageSize);
+//     const rows = await Work.find({
+//       category: {
+//         $in: [category],
+//       },
+//     })
+//       .limit(limit)
+//       .skip(offset);
+//     const meta = paginate(currentPage, count, rows, pageSize);
+//     return handleServerResponse(res, 200, { rows, meta });
+//   } catch (error) {
+//     return handleServerError(res, error);
+//   }
 // });
 
 // @route  POST api/works
@@ -107,7 +111,7 @@ router.post("/", upload.single("workImage"), (req, res) => {
   console.log(req.file);
   const newWork = new Work({
     img: req.file.path,
-    category: req.body.category,
+    category: ["All", req.body.category],
   });
   newWork.save().then((work) => res.json(work));
 });

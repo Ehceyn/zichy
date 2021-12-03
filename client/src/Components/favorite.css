@@ -17,13 +17,13 @@
 }
 
 .checkout-ad {
-  background: url(../utilities/zichygraphs/butterfly.jpg) no-repeat center/cover;
+  background: url(../utilities/zichygraphs/leafs.jpg) no-repeat center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
   max-width: 1350px;
   height: 40vh;
-  margin-top: 80px;
+  margin-top: 65px;
   margin-bottom: 10px;
   font-size: 3.5rem;
   font-weight: 900;

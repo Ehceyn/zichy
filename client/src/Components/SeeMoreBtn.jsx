@@ -1,9 +1,9 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 
-function SeeMoreBtn() {
+function SeeMoreBtn(props) {
   return (
-    <div className="see-more-btn">
+    <div className="see-more-btn" onClick={props.onSeeMore}>
       <Button
         style={{
           fontWeight: 400,
@@ -11,7 +11,7 @@ function SeeMoreBtn() {
           fontSize: "1rem",
         }}
       >
-        See more...
+        {props.status}
       </Button>
     </div>
   );

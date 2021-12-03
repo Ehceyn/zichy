@@ -12,7 +12,7 @@ import Filter from "./Filter";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Favorite, RemoveRedEye } from "@material-ui/icons";
 import { useStateValue } from "../StateProvider";
-import { axiosInstance } from "../../../config/keys";
+import axios from "axios";
 
 function Home() {
   const [works, setWorks] = useState([]);
@@ -31,25 +31,28 @@ function Home() {
   // Call Api
   useEffect(() => {
     getWorks();
-  }, [filter]);
+  }, [newFilter]);
 
   function getWorks() {
     // We're using axios to Fetch works
-    axiosInstance
+    axios
       // The API we're requesting data from
-      .get(`/works?category=${newFilter}`)
+      .get(`http://localhost:5000/api/works?category=${newFilter}`)
       // Once we get a response, we'll map the API endpoints to our props
       .then((response) => {
         setWorks(response.data);
-        setIsLoading(false);
-
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
         console.log(response.data);
       })
       // We can still use the `.catch()` method since axios is promise-based
       .catch((error) => {
         setWorks(works);
         setError(error);
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
       });
   }
   console.log(works);
@@ -57,8 +60,15 @@ function Home() {
   function filterWork(e) {
     console.log(e.target.value);
     setNewFilter(e.target.value);
-    getWorks();
     console.log(works);
+  }
+
+  // Load more items from the database
+  function seeMore() {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
   }
 
   // Toggle function that Adds and removes work stored in the localstorage as favs
@@ -140,7 +150,7 @@ function Home() {
 
                   <article className="work-info">
                     <div className="category-div">
-                      <p>{work.category}</p>
+                      <p>{work.category[1]}</p>
                       <div></div>
                     </div>
                     {favorites.includes(work._id) ? (
@@ -171,10 +181,14 @@ function Home() {
           ) : (
             <p>Loading...</p>
           )}
+          {error && <p className="errorMsg">{error}</p>}
         </div>
       </section>
       <section>
-        <SeeMoreBtn />
+        <SeeMoreBtn
+          onSeeMore={seeMore}
+          status={isLoading ? "Loading..." : "See more"}
+        />
       </section>
       <section className="about" id="about">
         <Title
