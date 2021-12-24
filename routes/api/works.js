@@ -1,11 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const dotenv = require("dotenv");
 const { cloudinary } = require("../../utils/cloudinary");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
-const { calculateLimitAndOffset, paginate } = require("paginate-info");
 
+// Cloudinary DB for storing images
 const cloudinaryStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
@@ -23,6 +22,7 @@ const cloudinaryStorage = new CloudinaryStorage({
   },
 });
 
+// Fallback Uploads Folder for storing images
 const storage = multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, "./uploads/");
@@ -31,6 +31,8 @@ const storage = multer.diskStorage({
     callback(null, file.originalname);
   },
 });
+
+// File configurations
 const fileFilter = (req, file, callback) => {
   if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
     callback(null, true);
@@ -39,6 +41,8 @@ const fileFilter = (req, file, callback) => {
   }
 };
 
+// Multer Uploads the file to any of the storages.
+// 'storage' is given prefrence', while 'dest' is a fallback storage
 const upload = multer({
   storage: cloudinaryStorage,
   dest: storage,
@@ -46,16 +50,18 @@ const upload = multer({
   fileFilter: fileFilter,
 });
 
-// Item Model
+// Work Model
 const Work = require("../../models/Work");
 
 // @route  GET api/works/:catgory
 // @desc  Get Works By Category
 // @access  Public
 
-//GET ALL PRODUCTS
+//GET ALL WORKS
 router.get("/", async (req, res) => {
   const qCategory = req.query.category;
+  let limit = 12;
+  let page = (Math.abs(parseInt(req.query.page)) || 1) - 1;
   try {
     let works;
     if (qCategory) {
@@ -63,9 +69,15 @@ router.get("/", async (req, res) => {
         category: {
           $in: [qCategory],
         },
-      });
+      })
+        .sort({ date: -1 })
+        .limit(limit)
+        .skip(limit * page);
     } else {
-      works = Work.find().sort({ date: -1 }).limit(12);
+      works = Work.find()
+        .sort({ date: -1 })
+        .limit(limit)
+        .skip(limit * page);
     }
 
     res.status(200).json(works);
@@ -73,35 +85,6 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-// /**
-//  * @function getAll
-//  * @param {Object} req request object
-//  * @param {Object} res response object
-//  * @returns {Object} response object
-//  * @description gets all available results
-//  */
-// router.get("/", async (req, res) => {
-//   // const qCategory = req.query.category;
-//   const {
-//     query: { category, currentPage, pageSize },
-//   } = req;
-//   try {
-//     const count = await Work.estimatedDocumentCount();
-//     const { limit, offset } = calculateLimitAndOffset(page, pageSize);
-//     const rows = await Work.find({
-//       category: {
-//         $in: [category],
-//       },
-//     })
-//       .limit(limit)
-//       .skip(offset);
-//     const meta = paginate(currentPage, count, rows, pageSize);
-//     return handleServerResponse(res, 200, { rows, meta });
-//   } catch (error) {
-//     return handleServerError(res, error);
-//   }
-// });
 
 // @route  POST api/works
 // @desc  Ceate A Work

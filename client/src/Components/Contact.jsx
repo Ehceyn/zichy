@@ -10,7 +10,6 @@ import emailjs from "emailjs-com";
 import { SocialIcon } from "react-social-icons";
 import { Container } from "@material-ui/core";
 import { Check, ErrorOutlineRounded } from "@material-ui/icons";
-// import Mediaquery from './mediaquery';
 
 const CssTextField = withStyles({
   root: {
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     justifySelf: "center",
-    width: "30ch",
+    width: "25ch",
   },
 }));
 
@@ -58,10 +57,6 @@ export default function Contact(props) {
     title: "",
     text: "",
   });
-  const [formValidate, setFormValidate] = useState({
-    color: "black",
-    borderBottomColor: "#0b993a",
-  });
   const [messageDisplay, setMessageDisplay] = useState("none");
 
   const [favorites, setFavorites] = useState([]);
@@ -71,6 +66,7 @@ export default function Contact(props) {
     if (getArray !== 0) {
       setFavorites([...getArray]);
     }
+    // eslint-disable-next-line
   }, []);
 
   const addFav = (id) => {
@@ -154,17 +150,16 @@ export default function Contact(props) {
       );
       form.current.reset();
     } else {
-      setFormValidate({
-        color: "red",
-        borderBottomColor: "red",
+      setMessage({
+        icon: (
+          <ErrorOutlineRounded
+            style={{ width: "70px", height: "70px", color: "red" }}
+          />
+        ),
+        title: "Ooops, something went wrong",
+        text: "Please ensure all fields with asterisks(*) are filled",
       });
-      setFormValue({
-        fullname: "Please input your fullname",
-        title: "",
-        email: "Please input a valid e-mail",
-        message: "Please write your message",
-        phone: "",
-      });
+      setMessageDisplay("flex");
       return false;
     }
   };
@@ -240,8 +235,7 @@ export default function Contact(props) {
             <Container
               id="standard-basic"
               label="I will like to get something like this/these"
-              fullWidth
-              style={{ margin: 8, display: "flex" }}
+              style={{ margin: 8, display: "flex", width: "100%" }}
               className="contactFav"
             >
               {basket.map((work, index) => {
@@ -264,10 +258,6 @@ export default function Contact(props) {
               value={formValue.fullname}
               onChange={handleChange}
               contentEditable={false}
-              style={{
-                color: `${formValidate.color}`,
-                borderBottomColor: `${formValidate.borderBottomColor}`,
-              }}
             />
             <CssTextField
               id="standard-basic"
@@ -285,11 +275,6 @@ export default function Contact(props) {
               value={formValue.email}
               onChange={handleChange}
               name="email"
-              style={{
-                color: `${formValidate.color}`,
-                borderBottomColor: `${formValidate.borderBottomColor}`,
-              }}
-              contentEditable={false}
             />
             <CssTextField
               id="standard-basic"
@@ -305,16 +290,10 @@ export default function Contact(props) {
               rows={4}
               id="standard-basic"
               label="Message"
-              fullWidth
+              style={{ margin: 8, width: "100%" }}
               value={formValue.message}
               onChange={handleChange}
               name="message"
-              style={{
-                color: `${formValidate.color}`,
-                margin: 8,
-                borderBottomColor: `${formValidate.borderBottomColor}`,
-              }}
-              contentEditable={false}
             />
             <div onClick={handleSubmit}>
               <Button

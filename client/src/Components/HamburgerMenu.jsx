@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
-import { Close, Favorite, Menu } from "@material-ui/icons";
+import { Favorite } from "@material-ui/icons";
 import Buttons from "./Buttons";
 import { SocialIcon } from "react-social-icons";
 
@@ -41,6 +41,7 @@ function HamburgerMenu(props) {
       ["load", "scroll", "resize", "change"].forEach((e) =>
         window.removeEventListener(e, handleScrol)
       );
+    // eslint-disable-next-line
   }, []);
 
   function handleScrol() {

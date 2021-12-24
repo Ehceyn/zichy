@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header2 from "./Header2";
 import Header from "./Header";
 import filter from "./filterstore";
 import Title from "./Title";
@@ -17,58 +16,82 @@ import axios from "axios";
 function Home() {
   const [works, setWorks] = useState([]);
   const [newFilter, setNewFilter] = useState("All");
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [favorites, setFavorites] = useState([]);
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
+
+  let initialPage = 1;
+
+  // const filterBtnNotActive = {
+  //   border: "1px solid rgba(231, 229, 229, 0.795)",
+  //   backgroundColor: "#fff",
+  //   color: "#0b993a",
+  // };
+  // const filterBtnActive = {
+  //   border: "1px solid rgba(255, 255, 255, 0)",
+  //   backgroundColor: "#0b993a",
+  //   color: "#ffffff",
+  // };
 
   //Get items from loclstorage
   useEffect(() => {
     if (getArray !== 0) {
       setFavorites([...getArray]);
     }
+    // eslint-disable-next-line
   }, []);
   // Call Api
   useEffect(() => {
     getWorks();
-  }, [newFilter]);
+    // eslint-disable-next-line
+  }, [newFilter, page]);
 
-  function getWorks() {
+  async function getWorks() {
     // We're using axios to Fetch works
-    axios
-      // The API we're requesting data from
-      .get(`http://localhost:5000/api/works?category=${newFilter}`)
+    try {
+      setIsLoading(true);
+      const response = await axios
+        // The API we're requesting data from
+        .get(`/api/works?category=${newFilter}&page=${page}`);
+      console.log(
+        `http://localhost:5000/api/works?category=${newFilter}&page=${page}`
+      );
       // Once we get a response, we'll map the API endpoints to our props
-      .then((response) => {
+      if (page !== initialPage) {
+        setWorks([...works, ...response.data]);
+        console.log(`page: ${page} & initialPage: ${initialPage}`);
+      } else {
         setWorks(response.data);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 2000);
-        console.log(response.data);
-      })
-      // We can still use the `.catch()` method since axios is promise-based
-      .catch((error) => {
-        setWorks(works);
-        setError(error);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 2000);
-      });
+      }
+
+      setError("");
+      console.log(works);
+      console.log(response.data);
+    } catch (error) {
+      setError("Error while loading data. Try again later");
+      console.log("ERROR: " + error);
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    }
   }
   console.log(works);
 
+  // To filter the works
   function filterWork(e) {
-    console.log(e.target.value);
-    setNewFilter(e.target.value);
+    console.log(e);
+    setNewFilter(e);
+    setPage(1);
     console.log(works);
   }
 
   // Load more items from the database
   function seeMore() {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    setPage((page) => page + 1);
+    console.log("pageNumber: " + page);
   }
 
   // Toggle function that Adds and removes work stored in the localstorage as favs
@@ -89,6 +112,7 @@ function Home() {
     console.log(favorites);
   };
 
+  //eslint-disable-next-line
   const [{}, dispatch] = useStateValue();
   const addToBasket = (props) => {
     dispatch({
@@ -126,68 +150,65 @@ function Home() {
                 <Filter
                   key={btn.id}
                   category={btn.category}
-                  onFilterWork={filterWork}
+                  onFilterWork={() => filterWork(btn.category)}
+                  className={
+                    btn.category === newFilter
+                      ? "single-filter-btn-active"
+                      : "single-filter-btn-inactive"
+                  }
                 />
               );
             })}
           </ul>
         </div>
         <div className="works-gallery">
-          {!isLoading ? (
-            works.map((work, index) => {
-              return (
-                <div className="works-div" key={work._id}>
-                  <div
-                  // onClick={() => {
-                  //   props.viewThisProject(props.id);
-                  // }}
-                  >
-                    <img src={work.img} alt="" className="works-img" />
-                    <div className="overlay">
-                      <RemoveRedEye titleAccess="VIEW PROJECT" />
-                    </div>
+          {works.map((work, index) => {
+            return (
+              <div className="works-div" key={work._id}>
+                <div>
+                  <img src={work.img} alt="" className="works-img" />
+                  <div className="overlay">
+                    <RemoveRedEye titleAccess="VIEW PROJECT" />
                   </div>
-
-                  <article className="work-info">
-                    <div className="category-div">
-                      <p>{work.category[1]}</p>
-                      <div></div>
-                    </div>
-                    {favorites.includes(work._id) ? (
-                      <div
-                        className="fav-btn btns"
-                        onClick={() => {
-                          removeFromBasket(work);
-                          addFav(work);
-                        }}
-                      >
-                        <Favorite />
-                      </div>
-                    ) : (
-                      <div
-                        className="fav-btn btns"
-                        onClick={() => {
-                          addToBasket(work);
-                          addFav(work);
-                        }}
-                      >
-                        <FavoriteBorderIcon />
-                      </div>
-                    )}
-                  </article>
                 </div>
-              );
-            })
-          ) : (
-            <p>Loading...</p>
-          )}
+
+                <article className="work-info">
+                  <div className="category-div">
+                    <p>{work.category[1]}</p>
+                    <div></div>
+                  </div>
+                  {favorites.includes(work._id) ? (
+                    <div
+                      className="fav-btn btns"
+                      onClick={() => {
+                        removeFromBasket(work);
+                        addFav(work);
+                      }}
+                    >
+                      <Favorite />
+                    </div>
+                  ) : (
+                    <div
+                      className="fav-btn btns"
+                      onClick={() => {
+                        addToBasket(work);
+                        addFav(work);
+                      }}
+                    >
+                      <FavoriteBorderIcon />
+                    </div>
+                  )}
+                </article>
+              </div>
+            );
+          })}
           {error && <p className="errorMsg">{error}</p>}
         </div>
       </section>
       <section>
         <SeeMoreBtn
           onSeeMore={seeMore}
-          status={isLoading ? "Loading..." : "See more"}
+          status={!isLoading ? "See more" : "Loading..."}
         />
       </section>
       <section className="about" id="about">

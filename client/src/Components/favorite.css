@@ -3,7 +3,6 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding: 20px;
   background-color: white;
   height: max-content;
   min-height: 90vh;
@@ -28,6 +27,10 @@
   font-size: 3.5rem;
   font-weight: 900;
   color: white;
+}
+
+.checkout-left > div > div {
+  padding: 0 20px;
 }
 
 .checkoutFavs-remove-btn {
@@ -63,6 +66,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 .checkout-contactDiv2 {
   height: 70vh;
@@ -72,6 +76,18 @@
   width: 95vw;
   justify-content: center;
 }
+.checkout-works-div {
+  margin: 10px;
+  width: 250px;
+  height: fit-content;
+  margin: 10px 0;
+  background-color: #ffffff;
+  padding: 10px 10px 0 10px;
+  border-radius: 5px;
+  box-shadow: 0.1px 0.1px 10px rgba(147, 150, 148, 0.1);
+  cursor: default;
+}
+
 .checkout-contact-close-btn {
   display: flex;
   align-self: flex-end;
@@ -87,4 +103,28 @@
   transition: all 0.1s ease-in;
   margin-right: 85px;
   margin-bottom: 30px;
+}
+
+@media all and (max-width: 425px) {
+  .checkout-ad {
+    padding: 0 20px;
+  }
+  .checkout-works-div {
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+    box-shadow: none;
+    border: 1px solid rgba(231, 229, 229, 0.795);
+  }
+  .checkout-title {
+    display: flex;
+    justify-content: center;
+  }
+  .checkout-left > div > div {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+  }
 }

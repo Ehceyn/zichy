@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-scroll";
 import { Link as RouterLink } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
 import { Favorite, Home } from "@material-ui/icons";
-import Buttons from "./Buttons";
 
 function FavoritesHamburger(props) {
   const [{ basket }] = useStateValue();

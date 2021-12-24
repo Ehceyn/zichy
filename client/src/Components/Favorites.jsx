@@ -5,7 +5,6 @@ import FavoriteWork from "./FavoriteWork";
 import MyFavNavbar from "./MyFavNavbar";
 import FavoritesHamburger from "./FavoritesHamburger";
 import Contact from "./Contact";
-import { Home } from "@material-ui/icons";
 import Buttons from "./Buttons";
 
 function Checkout(props) {
@@ -25,6 +24,7 @@ function Checkout(props) {
       ["scroll", "resize", "load"].forEach((e) =>
         window.removeEventListener(e, handleScroll)
       );
+    // eslint-disable-next-line
   }, []);
 
   function handleScroll() {
@@ -39,6 +39,7 @@ function Checkout(props) {
     if (getArray !== 0) {
       setFavorites([...getArray]);
     }
+    // eslint-disable-next-line
   }, []);
 
   const addFav = (id) => {
@@ -83,43 +84,44 @@ function Checkout(props) {
           <div className="checkout-ad">
             <p>My Favorites</p>
           </div>
+          <div>
+            {basket?.length === 0 ? (
+              <div>
+                <h2>Your Favorites Section Is Empty</h2>
+                <p>
+                  You have no favorite. To add one or more favorite work(s)
+                  simply click on the 'heart' icon next to the item{" "}
+                </p>
+              </div>
+            ) : (
+              <div>
+                <h2 className="checkout-title">My Favorite Designs</h2>
 
-          {basket?.length === 0 ? (
-            <div>
-              <h2>Your Favorites Section Is Empty</h2>
-              <p>
-                You have no favorite. To add one or more favorite work(s) simply
-                click on the 'heart' icon next to the item{" "}
-              </p>
-            </div>
-          ) : (
-            <div>
-              <h2 className="checkout-title">My Favorite Designs</h2>
-
-              {/* list out all the checkout products */}
-              <div className="works">
-                {basket.map((work, index) => {
-                  return (
-                    <FavoriteWork
-                      key={work.id}
-                      id={work.id}
-                      img={work.img}
-                      category={work.category}
-                      onRemoveFav={addFav}
+                {/* list out all the checkout products */}
+                <div className="works">
+                  {basket.map((work, index) => {
+                    return (
+                      <FavoriteWork
+                        key={work.id}
+                        id={work.id}
+                        img={work.img}
+                        category={work.category[1]}
+                        onRemoveFav={addFav}
+                      />
+                    );
+                  })}
+                </div>
+                <div style={{ marginTop: "20px" }}>
+                  <li onClick={displayContactDiv}>
+                    <Buttons
+                      value="Hire me"
+                      className="btn btn-for-favorites btn-with-bg"
                     />
-                  );
-                })}
+                  </li>
+                </div>
               </div>
-              <div style={{ marginTop: "20px" }}>
-                <li onClick={displayContactDiv}>
-                  <Buttons
-                    value="Hire me"
-                    className="btn btn-for-favorites btn-with-bg"
-                  />
-                </li>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </>

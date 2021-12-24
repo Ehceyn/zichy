@@ -151,6 +151,7 @@ Headers color      :      #1dbf73
 }
 .about-section-title {
   transform: translateX(55px);
+  margin-top: 30px;
 }
 .about-section-title-div {
   display: flex;
@@ -204,10 +205,14 @@ header .intro p {
 
 .animated-arrow-div {
   width: 100vw;
-  background-color: red;
-  height: 400px;
+  height: 40px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+}
+.animated-arrow {
+  animation: go-to-works 0.5s ease-in-out infinite alternate-reverse forwards;
+  cursor: pointer;
 }
 
 @keyframes go-to-works {
@@ -379,24 +384,45 @@ header .intro p {
   border-radius: 3px;
   box-shadow: 0.1px 0.1px 10px rgba(147, 150, 148, 0.1);
 }
-.filter-btn button {
+.filter-btn li {
   display: flex;
+  justify-content: center;
+  height: 80px;
+  flex-direction: column;
+}
+.single-filter-btn-inactive {
   border: none;
   background: none;
-  align-items: center;
-  height: 80px;
   font-size: 14px;
   font-weight: bold;
   color: #0b993a;
   cursor: pointer;
   text-transform: capitalize;
+  margin-bottom: 3px;
+}
+.single-filter-btn-active {
+  display: flex;
+  border: none;
+  background: none;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0b993a;
+  cursor: pointer;
+  text-transform: capitalize;
+  margin-bottom: 3px;
 }
 
-.filter-btn button:hover {
-  height: 20px;
-  border-bottom: 2px solid #0b993a;
+.filter-btn li:hover > .single-filter-btn-inactive + .btnBorder {
+  height: 2.5px;
+  width: 100%;
+  background: #0b993a;
 }
-
+.filter-btn li > .single-filter-btn-active + .btnBorder {
+  height: 2.5px;
+  width: 100%;
+  background: #0b993a;
+}
 /* ================================= WORKS SECTION ================================ */
 
 .works {
@@ -496,7 +522,7 @@ header .intro p {
   height: fit-content;
   justify-content: space-between;
   align-items: center;
-  height: 80vh;
+  height: fit-content;
   /* transform: translateY(-70px); */
 }
 
@@ -507,7 +533,6 @@ header .intro p {
   justify-content: center;
   align-items: center;
   width: 50%;
-  height: 300px;
 }
 .about-div article p {
   margin: 70px;
@@ -533,7 +558,7 @@ header .intro p {
   height: 300px;
   background-color: #ffffff;
   border: 1px solid #ffffff59;
-  /* border-radius: 50%; */
+  border-radius: 50%;
   /* box-shadow: 0.1px 0.1px 10px rgba(11, 153, 58, 0.233); */
 }
 
@@ -583,11 +608,10 @@ header .intro p {
 }
 .contact-page {
   width: 50%;
-  /* border-radius: 3px; */
   border: 3px solid #c9d4d5;
   border-left: 0;
   border-right: 0;
-
+  overflow-y: scroll;
   background-color: white;
 }
 .contact-page input,
@@ -615,8 +639,9 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40vw;
+  width: max-content;
   height: fit-content;
+  padding: 20px;
   background: white;
   text-align: center;
   box-shadow: 0.1px 0.1px 10px rgba(3, 49, 18, 0.322);
@@ -662,10 +687,7 @@ footer > div {
 ======================================================================================== */
 @media all and (max-width: 800px) {
   .btn-for-favorites {
-    display: block;
-    font-size: 1em;
-    width: 100%;
-    height: 40px;
+    display: none;
   }
 
   /* HEADER */
@@ -870,18 +892,6 @@ footer > div {
     box-shadow: none;
     width: 500px;
   }
-  .filter-btn button {
-    border: 1px solid rgba(231, 229, 229, 0.795);
-    background: none;
-    height: 30px;
-    font-size: 0.8rem;
-    padding: 0 5px;
-    border-radius: 15px;
-  }
-  .filter-btn button:hover {
-    height: 30px;
-    border-bottom: none;
-  }
 
   /* ABOUT */
   .about-div {
@@ -925,6 +935,10 @@ footer > div {
     background: none;
     display: none;
   }
+
+  .works-div .overlay {
+    display: none;
+  }
 }
 @media all and (max-width: 425px) {
   /* BUTTONS */
@@ -943,6 +957,12 @@ footer > div {
   .btn-for-general {
     /* Specifies the size of the button excluding header button */
     width: 150px;
+    height: 40px;
+  }
+  .btn-for-favorites {
+    display: block;
+    font-size: 1em;
+    width: 100%;
     height: 40px;
   }
 
@@ -964,7 +984,7 @@ footer > div {
     margin: 0;
     padding: 0 5px;
     width: 100%;
-    height: 100vh;
+    height: 107vh;
   }
   header .intro p {
     color: white;
@@ -972,6 +992,9 @@ footer > div {
     font-weight: bold;
     line-height: 1.3em;
     margin-bottom: 40px;
+  }
+  .animated-arrow-div {
+    transform: translateY(-78px);
   }
 
   /* HAMBURGER */
@@ -1007,9 +1030,22 @@ footer > div {
     box-shadow: none;
     width: 100%;
   }
-  .filter-btn button {
+  .single-filter-btn-inactive {
     border: 1px solid rgba(231, 229, 229, 0.795);
     background: none;
+    height: 30px;
+    max-width: 110px;
+    width: max-content;
+    font-size: 0.8rem;
+    padding: 0 5px;
+    border-radius: 15px;
+    margin-right: 4px;
+    color: #0b993a;
+  }
+  .single-filter-btn-active {
+    background: rgba(11, 153, 58, 0.6);
+    border: 1px solid rgba(231, 229, 229, 0.795);
+    color: rgba(11, 153, 58, 0.9);
     height: 30px;
     max-width: 110px;
     width: max-content;
@@ -1022,6 +1058,15 @@ footer > div {
     height: 30px;
     border-bottom: none;
   }
+  .filter-btn li {
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    flex-direction: column;
+  }
+  .filter-btn li .btnBorder {
+    display: none;
+  }
 
   /* WORKS */
   .works-gallery {
@@ -1032,10 +1077,11 @@ footer > div {
   .works-div {
     position: relative;
     width: 100%;
-    margin: 10px;
+    height: fit-content;
+    margin: 10px 20px;
     background-color: #ffffff;
     padding: 10px 10px 0 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     box-shadow: none;
     border: 1px solid rgba(231, 229, 229, 0.795);
   }
@@ -1044,11 +1090,11 @@ footer > div {
     width: 100%;
     max-width: 350px;
     height: 250px;
-    border-radius: 3px 3px 0 0;
+    border-radius: 5px 5px 0 0;
   }
 
   .works .work-info {
-    height: 60px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1066,12 +1112,8 @@ footer > div {
     border-bottom: 2px solid rgba(0, 0, 0, 0.726);
   }
 
-  .works-div:hover .overlay {
-    /* Increases the opacity of overlay to 1, thereby is visible on the works image */
-    opacity: 0;
-  }
-
   .works-div .overlay {
+    /* Increases the opacity of overlay to 1, thereby is visible on the works image */
     display: none;
   }
 
@@ -1104,12 +1146,12 @@ footer > div {
 
   .my-photo-smscrn {
     display: initial;
-    width: 110px;
-    height: 110px;
+    width: 115px;
+    height: 115px;
     background-color: white;
     border-radius: 50%;
     transform: translateY(50%);
-    border: 5px solid rgba(0, 0, 0, 0.479);
+    border: none;
   }
   .about-div .photo-div {
     background: none;

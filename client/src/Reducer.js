@@ -1,5 +1,3 @@
-import idMaker from "./Components/idMaker";
-
 export const initialState = {
   basket: localStorage.getItem("favorites")
     ? JSON.parse(localStorage.getItem("favorites"))

@@ -23,6 +23,7 @@ function Header(props) {
       ["load", "scroll", "resize", "change"].forEach((e) =>
         window.removeEventListener(e, handleScroll)
       );
+    // eslint-disable-next-line
   }, []);
 
   function handleScroll() {
@@ -59,7 +60,7 @@ function Header(props) {
   return (
     <header>
       {nav}
-      <a name="home">
+      <div name="home">
         <div className="intro">
           <p>
             Bring your <span className="intro-span">dreams</span> into reality.
@@ -80,13 +81,22 @@ function Header(props) {
             />
           </Link>
         </div>
-        <div classname="animated-arrow-div">
-          <KeyboardArrowDownOutlined
-            style={{ color: "white", width: "40px", height: "40px" }}
-            classname="animated-arrow"
-          />
-        </div>
-      </a>
+        <Link
+          activeClass="active"
+          to="works"
+          spy={true}
+          smooth={true}
+          offset={-30}
+          duration={500}
+        >
+          <div className="animated-arrow-div">
+            <KeyboardArrowDownOutlined
+              style={{ color: "white", width: "40px", height: "40px" }}
+              className="animated-arrow"
+            />
+          </div>
+        </Link>
+      </div>
     </header>
   );
 }

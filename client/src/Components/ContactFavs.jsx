@@ -4,6 +4,7 @@ import { useStateValue } from "../StateProvider";
 import { DeleteOutline } from "@material-ui/icons";
 
 function ContactFavs(props) {
+  // eslint-disable-next-line
   const [{}, dispatch] = useStateValue();
 
   const removeFromBasket = () => {
