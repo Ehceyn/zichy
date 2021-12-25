@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     justifySelf: "center",
-    width: "25ch",
+    width: `25ch`,
   },
 }));
 
@@ -58,7 +58,7 @@ export default function Contact(props) {
     text: "",
   });
   const [messageDisplay, setMessageDisplay] = useState("none");
-
+  const [width, setWidth] = useState("50%");
   const [favorites, setFavorites] = useState([]);
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
 
@@ -68,6 +68,23 @@ export default function Contact(props) {
     }
     // eslint-disable-next-line
   }, []);
+  useEffect(() => {
+    ["load", "scroll", "resize", "change"].forEach((e) =>
+      window.addEventListener(e, handleWidth)
+    );
+    return () =>
+      ["load", "scroll", "resize", "change"].forEach((e) =>
+        window.removeEventListener(e, handleWidth)
+      );
+    // eslint-disable-next-line
+  }, []);
+  function handleWidth() {
+    if (window.matchMedia("(max-width:425px)").matches) {
+      setWidth("100%");
+    } else {
+      setWidth("50%");
+    }
+  }
 
   const addFav = (id) => {
     let array = favorites;
@@ -258,6 +275,7 @@ export default function Contact(props) {
               value={formValue.fullname}
               onChange={handleChange}
               contentEditable={false}
+              style={{ width: `${width}` }}
             />
             <CssTextField
               id="standard-basic"
@@ -266,6 +284,7 @@ export default function Contact(props) {
               value={formValue.title}
               onChange={handleChange}
               name="title"
+              style={{ width: `${width}` }}
             />
             <CssTextField
               required
@@ -275,6 +294,7 @@ export default function Contact(props) {
               value={formValue.email}
               onChange={handleChange}
               name="email"
+              style={{ width: `${width}` }}
             />
             <CssTextField
               id="standard-basic"
@@ -283,6 +303,7 @@ export default function Contact(props) {
               value={formValue.phone}
               onChange={handleChange}
               name="phone"
+              style={{ width: `${width}` }}
             />
             <CssTextField
               required

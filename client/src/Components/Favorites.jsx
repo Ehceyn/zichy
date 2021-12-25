@@ -87,7 +87,9 @@ function Checkout(props) {
           <div>
             {basket?.length === 0 ? (
               <div>
-                <h2>Your Favorites Section Is Empty</h2>
+                <h2 style={{ marginBottom: "10px" }}>
+                  Your Favorites Section Is Empty
+                </h2>
                 <p>
                   You have no favorite. To add one or more favorite work(s)
                   simply click on the 'heart' icon next to the item{" "}

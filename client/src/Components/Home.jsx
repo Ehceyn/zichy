@@ -22,19 +22,6 @@ function Home() {
   const [favorites, setFavorites] = useState([]);
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
 
-  let initialPage = 1;
-
-  // const filterBtnNotActive = {
-  //   border: "1px solid rgba(231, 229, 229, 0.795)",
-  //   backgroundColor: "#fff",
-  //   color: "#0b993a",
-  // };
-  // const filterBtnActive = {
-  //   border: "1px solid rgba(255, 255, 255, 0)",
-  //   backgroundColor: "#0b993a",
-  //   color: "#ffffff",
-  // };
-
   //Get items from loclstorage
   useEffect(() => {
     if (getArray !== 0) {
@@ -59,9 +46,9 @@ function Home() {
         `http://localhost:5000/api/works?category=${newFilter}&page=${page}`
       );
       // Once we get a response, we'll map the API endpoints to our props
-      if (page !== initialPage) {
+      if (page !== 1) {
         setWorks([...works, ...response.data]);
-        console.log(`page: ${page} & initialPage: ${initialPage}`);
+        console.log(`page: ${page} & initialPage: 1`);
       } else {
         setWorks(response.data);
       }
@@ -73,9 +60,7 @@ function Home() {
       setError("Error while loading data. Try again later");
       console.log("ERROR: " + error);
     } finally {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
+      setIsLoading(false);
     }
   }
   console.log(works);
@@ -166,7 +151,11 @@ function Home() {
             return (
               <div className="works-div" key={work._id}>
                 <div>
-                  <img src={work.img} alt="" className="works-img" />
+                  <img
+                    src={work.img}
+                    className="works-img"
+                    alt={work.category[1] + "_" + work._id}
+                  />
                   <div className="overlay">
                     <RemoveRedEye titleAccess="VIEW PROJECT" />
                   </div>

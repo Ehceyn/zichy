@@ -13,8 +13,8 @@ const cloudinaryStorage = new CloudinaryStorage({
     transformation: [
       {
         height: 320,
-        width: 250,
-        crop: "scale",
+        width: 280,
+        crop: "fit",
         quality: 60,
         fetch_format: "auto",
       },

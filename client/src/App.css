@@ -24,7 +24,7 @@ html,
 body,
 div,
 img {
-  vertical-align: baseline;
+  /* vertical-align: baseline; */
 }
 body {
   width: 100vw;
@@ -162,8 +162,8 @@ Headers color      :      #1dbf73
 /* ==== IMAGE SECTION === */
 
 img {
-  width: 250px;
-  height: 250px;
+  width: 270px;
+  height: 320px;
 }
 
 /* ==== HAMBURGER SECTION === */
@@ -432,7 +432,6 @@ header .intro p {
 
 .works-gallery {
   padding: 5px;
-  /* padding-top: 370px; */
   background-color: transparent;
   display: flex;
   flex-wrap: wrap;
@@ -445,19 +444,14 @@ header .intro p {
 
 .works-div {
   margin: 10px;
-  width: 250px;
-  height: 320px;
   background-color: #ffffff;
-  padding: 10px 10px 10px 10px;
+  padding: 15px 15px 0 15px;
   border-radius: 3px;
   box-shadow: 0.1px 0.1px 10px rgba(147, 150, 148, 0.1);
   cursor: default;
 }
 
 .works-img {
-  width: 100%;
-  /* max-width: 350;
-  height: 250px; */
   border-radius: 3px 3px 0 0;
 }
 
@@ -473,7 +467,7 @@ header .intro p {
   border-radius: 3px 3px 0 0;
   top: 0;
   width: 250px;
-  height: 250px;
+  height: 320px;
   background-color: rgba(255, 255, 255, 0.596);
   opacity: 0;
   transition: all 0.3s ease-in;
@@ -481,8 +475,7 @@ header .intro p {
 }
 
 .works .work-info {
-  /* background-color: rgb(243, 241, 241); */
-  height: 60px;
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -749,7 +742,7 @@ footer > div {
     align-items: center;
     width: 100%;
     height: 92vh;
-    overflow-y: hidden;
+    overflow-y: scroll;
     transition: all 0.2s linear;
   }
 
@@ -984,7 +977,7 @@ footer > div {
     margin: 0;
     padding: 0 5px;
     width: 100%;
-    height: 107vh;
+    height: 106vh;
   }
   header .intro p {
     color: white;
@@ -1072,29 +1065,26 @@ footer > div {
   .works-gallery {
     padding: 0;
     padding-top: 40px;
+    margin: 0;
   }
 
   .works-div {
     position: relative;
-    width: 100%;
-    height: fit-content;
-    margin: 10px 20px;
+
     background-color: #ffffff;
-    padding: 10px 10px 0 10px;
+    padding: 15px 15px 0 15px;
     border-radius: 5px;
     box-shadow: none;
     border: 1px solid rgba(231, 229, 229, 0.795);
   }
 
   .works-img {
-    width: 100%;
     max-width: 350px;
-    height: 250px;
     border-radius: 5px 5px 0 0;
   }
 
   .works .work-info {
-    height: 70px;
+    height: 80px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1139,7 +1129,7 @@ footer > div {
     margin-bottom: 0;
     text-align: center;
     font-size: 1rem;
-    font-weight: 200;
+    font-weight: 400;
     color: white;
     line-height: 1.7rem;
   }
