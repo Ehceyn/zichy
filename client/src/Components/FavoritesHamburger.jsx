@@ -28,7 +28,7 @@ function FavoritesHamburger(props) {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  fontSize: "0.4em",
+                  fontSize: "0.5em",
                   position: "absolute",
                   height: "14px",
                   width: "14px",

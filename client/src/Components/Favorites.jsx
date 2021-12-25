@@ -101,17 +101,19 @@ function Checkout(props) {
 
                 {/* list out all the checkout products */}
                 <div className="works">
-                  {basket.map((work, index) => {
-                    return (
-                      <FavoriteWork
-                        key={work.id}
-                        id={work.id}
-                        img={work.img}
-                        category={work.category[1]}
-                        onRemoveFav={addFav}
-                      />
-                    );
-                  })}
+                  <div className="works-gallery">
+                    {basket.map((work, index) => {
+                      return (
+                        <FavoriteWork
+                          key={work.id}
+                          id={work.id}
+                          img={work.img}
+                          category={work.category[1]}
+                          onRemoveFav={addFav}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
                 <div style={{ marginTop: "20px" }}>
                   <li onClick={displayContactDiv}>

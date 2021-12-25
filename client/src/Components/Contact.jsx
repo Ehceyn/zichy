@@ -70,11 +70,11 @@ export default function Contact(props) {
     // eslint-disable-next-line
   }, []);
   useEffect(() => {
-    ["load", "scroll", "resize", "change"].forEach((e) =>
+    ["DOMContentLoaded", "load", "scroll", "resize", "change"].forEach((e) =>
       window.addEventListener(e, handleWidth)
     );
     return () =>
-      ["load", "scroll", "resize", "change"].forEach((e) =>
+      ["DOMContentLoaded", "load", "scroll", "resize", "change"].forEach((e) =>
         window.removeEventListener(e, handleWidth)
       );
     // eslint-disable-next-line

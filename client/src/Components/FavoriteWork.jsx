@@ -18,11 +18,11 @@ function CheckoutFavs(props) {
   return (
     <div className="checkout-works-div">
       <div
-        onClick={() => {
-          props.viewThisProject(props.id);
-        }}
+      // onClick={() => {
+      //   props.viewThisProject(props.id);
+      // }}
       >
-        <img src={props.img} alt="" className="works-img" />
+        <img src={props.img} alt="" className="checkout-works-img" />
       </div>
       <article className="work-info">
         <div className="category-div">
