@@ -7,15 +7,8 @@ import FavoritesHamburger from "./FavoritesHamburger";
 import Contact from "./Contact";
 import Buttons from "./Buttons";
 import ReactGA from "react-ga";
-ReactGA.initialize("G-86TQT77EXV", {
-  debug: true,
-  titleCase: false,
-  gaOptions: {
-    name: "Zichygraphs",
-    userId: 3117594594,
-  },
-});
-ReactGA.pageview(window.location.pathname + window.location.search);
+import { withRouter } from "react-router-dom";
+ReactGA.initialize("G-TFJY2JG9TK");
 
 function Checkout(props) {
   const [{ basket }] = useStateValue();
@@ -25,6 +18,11 @@ function Checkout(props) {
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
 
   const [nav, setNav] = useState(<FavoritesHamburger />);
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     ["scroll", "resize", "load"].forEach((e) =>
@@ -142,4 +140,4 @@ function Checkout(props) {
   );
 }
 
-export default Checkout;
+export default withRouter(Checkout);

@@ -13,15 +13,8 @@ import { Favorite, RemoveRedEye } from "@material-ui/icons";
 import { useStateValue } from "../StateProvider";
 import axios from "axios";
 import ReactGA from "react-ga";
-ReactGA.initialize("G-86TQT77EXV", {
-  debug: true,
-  titleCase: false,
-  gaOptions: {
-    name: "Zichygraphs",
-    userId: 3117594594,
-  },
-});
-ReactGA.pageview(window.location.pathname + window.location.search);
+import { withRouter } from "react-router-dom";
+ReactGA.initialize("G-TFJY2JG9TK");
 
 function Home() {
   const [works, setWorks] = useState([]);
@@ -32,6 +25,10 @@ function Home() {
   const [favorites, setFavorites] = useState([]);
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
 
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+    // eslint-disable-next-line
+  }, []);
   //Get items from loclstorage
   useEffect(() => {
     if (getArray !== 0) {
@@ -239,4 +236,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default withRouter(Home);
