@@ -58,7 +58,8 @@ export default function Contact(props) {
     text: "",
   });
   const [messageDisplay, setMessageDisplay] = useState("none");
-  const [width, setWidth] = useState("50%");
+  const [width, setWidth] = useState("25ch");
+  const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
 
@@ -82,7 +83,7 @@ export default function Contact(props) {
     if (window.matchMedia("(max-width:425px)").matches) {
       setWidth("100%");
     } else {
-      setWidth("50%");
+      setWidth("25ch");
     }
   }
 
@@ -130,6 +131,7 @@ export default function Contact(props) {
       formValue.email.includes("@") &&
       formValue.message.length >= 5
     ) {
+      setIsLoading(true);
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, USER_ID).then(
         (result) => {
           console.log(result.text);
@@ -150,6 +152,7 @@ export default function Contact(props) {
             phone: "",
           });
           setMessageDisplay("flex");
+          setIsLoading(false);
         },
         (error) => {
           console.log(error.text);
@@ -163,6 +166,7 @@ export default function Contact(props) {
             text: error.text ? error.text : "Check your internet connection",
           });
           setMessageDisplay("flex");
+          setIsLoading(false);
         }
       );
       form.current.reset();
@@ -319,7 +323,8 @@ export default function Contact(props) {
             <div onClick={handleSubmit}>
               <Button
                 className="btn btn-for-general btn-with-bg"
-                value="Send"
+                value={isLoading ? "Sending..." : "Send"}
+                disabled={isLoading ? true : false}
               />
             </div>
 
