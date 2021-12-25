@@ -6,6 +6,16 @@ import MyFavNavbar from "./MyFavNavbar";
 import FavoritesHamburger from "./FavoritesHamburger";
 import Contact from "./Contact";
 import Buttons from "./Buttons";
+import ReactGA from "react-ga";
+ReactGA.initialize("G-86TQT77EXV", {
+  debug: true,
+  titleCase: false,
+  gaOptions: {
+    name: "Zichygraphs",
+    userId: 3117594594,
+  },
+});
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function Checkout(props) {
   const [{ basket }] = useStateValue();

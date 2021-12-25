@@ -12,6 +12,16 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Favorite, RemoveRedEye } from "@material-ui/icons";
 import { useStateValue } from "../StateProvider";
 import axios from "axios";
+import ReactGA from "react-ga";
+ReactGA.initialize("G-86TQT77EXV", {
+  debug: true,
+  titleCase: false,
+  gaOptions: {
+    name: "Zichygraphs",
+    userId: 3117594594,
+  },
+});
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function Home() {
   const [works, setWorks] = useState([]);
