@@ -8,7 +8,7 @@ import Contact from "./Contact";
 import Buttons from "./Buttons";
 import ReactGA from "react-ga";
 import { withRouter } from "react-router-dom";
-ReactGA.initialize("G-TFJY2JG9TK");
+ReactGA.initialize("UA-181717739-1");
 
 function Checkout(props) {
   const [{ basket }] = useStateValue();

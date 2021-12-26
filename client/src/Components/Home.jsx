@@ -14,7 +14,7 @@ import { useStateValue } from "../StateProvider";
 import axios from "axios";
 import ReactGA from "react-ga";
 import { withRouter } from "react-router-dom";
-ReactGA.initialize("G-TFJY2JG9TK");
+ReactGA.initialize("UA-181717739-1");
 
 function Home() {
   const [works, setWorks] = useState([]);
