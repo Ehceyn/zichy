@@ -20,7 +20,8 @@ function Checkout(props) {
   const [nav, setNav] = useState(<FavoritesHamburger />);
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.pageview(window.location.pathname);
+    console.log(window.location.pathname);
     // eslint-disable-next-line
   }, []);
 

@@ -26,7 +26,8 @@ function Home() {
   const getArray = JSON.parse(localStorage.getItem("favs") || "0");
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.pageview(window.location.pathname);
+    console.log(window.location.pathname);
     // eslint-disable-next-line
   }, []);
   //Get items from loclstorage
