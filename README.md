@@ -6,4 +6,4 @@ An advanced graphics designers portfolio.
 
 more features coming soon...
 
-### Visit [Zichygraphs](https://www.zichygraphs.herokuapp.com)
+### Visit [Zichygraphs](http://zichygraphs.herokuapp.com)
