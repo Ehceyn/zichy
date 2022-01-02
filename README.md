@@ -1,6 +1,6 @@
 # Zichygraphs
 An advanced graphics designers portfolio. 
-![Zichygraphs](https://github.com/Ehceyn/[zichy/blob/master/client/src/utilities/zichygraphs/dreamsmoke.jpg?raw=true)
+![Zichygraphs](https://github.com/Ehceyn/[zichy/blob/master/dreamsmoke.jpg?raw=true)
 
 ## Some Special Features
 - Has 'Add and Remove from favorites' 
